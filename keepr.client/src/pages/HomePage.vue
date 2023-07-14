@@ -1,20 +1,33 @@
 <template>
+
+import KeepForm from '../components/KeepForm.vue.js';
   <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <div class="home-card p-5 bg-white rounded elevation-3">
       <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo"
         class="rounded-circle">
       <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
+        Vue 3 Starter Keep
+
       </h1>
     </div>
   </div>
+  <section class="container-fluid d-flex justify-content-center">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createKeepModal" aria-controls="createKeepModal">
+      Create Keep
+    </button>
+    <Modal id="createKeepModal">
+      <KeepForm/>
+    </Modal>
+  </section>
 </template>
 
 <script>
+import KeepForm from '../components/KeepForm.vue';
 export default {
-  setup() {
-    return {}
-  }
+    setup() {
+        return {};
+    },
+    components: { KeepForm }
 }
 </script>
 
