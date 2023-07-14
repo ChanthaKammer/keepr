@@ -5,7 +5,6 @@ export class Keep{
       this.description = data.description;
       this.img = data.img;
       this.views = data.views;
-      this.archived = data.archived;
       this.creatorId = data.creatorId;
       this.kept = data.kept;
       this.creator = data.creator;

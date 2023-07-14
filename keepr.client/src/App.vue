@@ -13,12 +13,26 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import { keepsService } from './services/KeepsService.js'
+import Pop from './utils/Pop.js'
 
 export default {
   setup() {
+    async function getAllKeeps() {
+      try {
+        keepsService.getAllKeeps()
+      } catch (e){
+        Pop.error(e);
+      }
+    }
+
+    onMounted(() => {
+      getAllKeeps();
+    })
+
     return {
       appState: computed(() => AppState)
     }
