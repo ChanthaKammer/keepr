@@ -4,7 +4,7 @@
          <div class="container-fluid">
             <div class="mb-3">
                <label for="keepName" class="form-label">Keep Name</label>
-               <input type="text" class="form-control" id="keepTitle" aria-describedby="keepTitle" v-model="editable.title">
+               <input type="text" class="form-control" id="keepName" aria-describedby="keepName" v-model="editable.name">
             </div>
             <div class="mb-3">
                <label for="keepImage" class="form-label">Image Url</label>

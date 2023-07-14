@@ -14,8 +14,8 @@ class KeepsService{
    }
 
    async createKeep(keepData){
-      // const res = await api.post('api/keeps', keepData);
-      // AppState.keeps.push(new Keep(res.data));
+      const res = await api.post('api/keeps', keepData);
+      AppState.keeps.push(new Keep(res.data));
       logger.log("Creating keep", keepData);
    }
 

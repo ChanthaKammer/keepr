@@ -1,6 +1,8 @@
 <template>
    <div class="container-fluid">
       <h1>{{ keep.name }} {{ keep.id }}</h1>
+      <h4>{{ keep.creator.name }}</h4>
+      <img class="img-fluid" :src="keep.creator.picture">
       <p>{{ keep.description }}</p>
       <img :src="keep.img">
    </div>
