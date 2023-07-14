@@ -36,6 +36,9 @@ public class Startup
 
     services.AddScoped<KeepsRepository>();
     services.AddScoped<KeepService>();
+
+    services.AddScoped<VaultsRepository>();
+    services.AddScoped<VaultService>();
   }
 
   private void ConfigureCors(IServiceCollection services)

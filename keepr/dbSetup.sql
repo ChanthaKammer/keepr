@@ -29,6 +29,28 @@ INSERT INTO keeps
 VALUES
 ("Mazda Miata", "I can't believe this is a car.", "https://i.ytimg.com/vi/Z71tcJtgfN8/maxresdefault.jpg", "64a76eae48f84949dfd6247a");
 
+CREATE TABLE IF NOT EXISTS vaults(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  creatorId VARCHAR(255) COMMENT 'Creator Id',
+  name VarCHAR(500) COMMENT 'Name',
+  description TEXT COMMENT 'Description',
+  img VARCHAR(500) Comment 'Img',
+  isPrivate BOOLEAN DEFAULT false Comment 'Is Private',
+  FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
+
+CREATE TABLE IF NOT EXISTS vaultkeeps(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  creatorId VARCHAR(255) COMMENT 'Creator Id',
+  vaultId INT NOT NULL,
+  keepId INT NOT NULL,
+  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
+  updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (vaultId) REFERENCES vaults(id) ON DELETE CASCADE,
+  FOREIGN KEY (keepId) REFERENCES keeps(id) ON DELETE CASCADE,
+  FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
+) default charset utf8 COMMENT '';
+
 SHOW ENGINE INNODB STATUS;
 
 
