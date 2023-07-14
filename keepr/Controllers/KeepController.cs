@@ -59,5 +59,17 @@ public class KeepController : ControllerBase
          return BadRequest(e.Message);
       }
    }
+
+   [HttpDelete("{keepId}")]
+   [Authorize]
+   public async Task<ActionResult<Keep>> DeleteKeep(int keepId){
+      try {
+         Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+         Keep keep = _keepService.DeleteKeep(keepId, userInfo.Id);
+         return Ok(keep);
+      } catch (Exception e){
+         return BadRequest(e.Message);
+      }
+   }
 }
 

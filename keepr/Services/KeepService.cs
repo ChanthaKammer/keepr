@@ -39,4 +39,14 @@ public class KeepService{
       _repo.editKeep(original);
       return original;
    }
+
+   internal Keep DeleteKeep(int keepId, string userId){
+      Keep keep = getById(keepId);
+      if(keep.CreatorId != userId){
+         throw new Exception($"You are not allowed to delete keep: {keepId}");
+      }
+      int rows = _repo.DeleteKeep(keepId);
+      if(rows > 1) throw new Exception("Too many rows deleted, check db.");
+      return keep;
+   }
 }
