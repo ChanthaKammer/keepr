@@ -11,4 +11,9 @@ public class KeepService{
       List<Keep> keeps = _repo.getAllKeeps();
       return keeps;
    }
+
+   internal Keep createKeep(Keep keepData){
+      Keep keep = _repo.createKeep(keepData);
+      return keep;
+   }
 }

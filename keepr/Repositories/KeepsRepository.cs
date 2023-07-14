@@ -21,6 +21,42 @@ public class KeepsRepository{
       }).ToList();
       return keeps;
    }
+
+   internal Keep createKeep(Keep keepData){
+      string sql = @"
+      INSERT INTO keeps
+      (name, description, img, creatorId)
+      VALUES
+      (@name, @description, @img, @creatorId);
+
+      SELECT keep.*,
+      creator.*
+
+      FROM keeps keep
+      JOIN accounts creator ON keep.creatorId = creator.id
+      WHERE keep.id = LAST_INSERT_ID()
+      ;";
+
+      Keep keep = _db.Query<Keep, Account, Keep>(sql, (keep, creator) => {
+         keep.Creator = creator;
+         return keep;
+      }, keepData).FirstOrDefault();
+      return keep;
+   }
+   // string sql = @"
+   //    INSERT INTO recipes
+   //    (title, instructions, img, category, archived, creatorId)
+   //    VALUES
+   //    (@title, @instructions, @img, @category, @archived, @creatorId);
+
+   //    SELECT rcp.*,
+   //    creator.*
+
+   //    FROM recipes rcp
+   //    JOIN accounts creator ON rcp.creatorId = creator.id
+   //    WHERE rcp.id = LAST_INSERT_ID();
+   //    ";
+
 }
 
    // internal List<Recipe> getAllRecipes()

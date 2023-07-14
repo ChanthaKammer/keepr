@@ -1,7 +1,7 @@
 namespace keepr.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/keeps")]
 
 public class KeepController : ControllerBase
 {
@@ -22,4 +22,17 @@ public class KeepController : ControllerBase
          return BadRequest(e.Message);
       }
    }
+
+   [HttpPost]
+   [Authorize]
+   public async Task<ActionResult<Keep>> createKeep([FromBody] Keep keepData){
+      try {
+         Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+         keepData.CreatorId = userInfo.Id;
+         Keep keep = _keepService.createKeep(keepData);
+         return Ok(keep);
+      } catch (Exception e){
+         return BadRequest(e.Message);
+      }
+   } 
 }
