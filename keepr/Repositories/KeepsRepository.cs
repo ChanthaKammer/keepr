@@ -43,33 +43,44 @@ public class KeepsRepository{
       }, keepData).FirstOrDefault();
       return keep;
    }
-   // string sql = @"
-   //    INSERT INTO recipes
-   //    (title, instructions, img, category, archived, creatorId)
-   //    VALUES
-   //    (@title, @instructions, @img, @category, @archived, @creatorId);
 
-   //    SELECT rcp.*,
-   //    creator.*
+   internal void editKeep(Keep keep){
+      string sql = @"
+      UPDATE keeps
+      SET
+      name = @name,
+      description = @description,
+      img = @img,
+      views = @views
+      WHERE id = @id
+      ";
+      _db.Execute(sql, keep);
+   }
 
-   //    FROM recipes rcp
-   //    JOIN accounts creator ON rcp.creatorId = creator.id
-   //    WHERE rcp.id = LAST_INSERT_ID();
-   //    ";
+   internal Keep getById(int keepId){
+      string sql = @"
+      SELECT keep.*,
+      creator.*
 
+      FROM keeps keep
+      JOIN accounts creator ON keep.creatorId = creator.Id
+      WHERE keep.id = @keepId;
+      ";
+      Keep keep = _db.Query<Keep, Account, Keep>(sql, (keep, creator) => {
+         keep.Creator = creator;
+         return keep;
+      }, new { keepId }).FirstOrDefault();
+      return keep;
+   }
+
+   internal void addView(Keep keep){
+      string sql = @"
+         UPDATE keeps
+         SET views = @views
+         WHERE id = @id;
+      ";
+
+      _db.Execute(sql, keep);
+   }
 }
 
-   // internal List<Recipe> getAllRecipes()
-   // {
-   //    string sql = @"
-   //    SELECT rcp.*,
-   //    creator.*
-
-   //    FROM recipes rcp
-   //    JOIN accounts creator ON rcp.creatorId = creator.id";
-   //    List<Recipe> recipes = _db.Query<Recipe, Account, Recipe>(sql, (recipe, creator) => {
-   //       recipe.Creator = creator;
-   //       return recipe;
-   //    }).ToList();
-   //    return recipes;
-   // }

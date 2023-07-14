@@ -23,6 +23,17 @@ public class KeepController : ControllerBase
       }
    }
 
+   [HttpGet("{keepId}")]
+   public ActionResult<Keep> GetById(int keepId){
+      try {
+         Keep keep = _keepService.getById(keepId);
+         return Ok(keep);
+      } catch (Exception e){
+         return BadRequest(e.Message);
+      }
+   }
+
+
    [HttpPost]
    [Authorize]
    public async Task<ActionResult<Keep>> createKeep([FromBody] Keep keepData){
@@ -35,4 +46,18 @@ public class KeepController : ControllerBase
          return BadRequest(e.Message);
       }
    } 
+
+   [HttpPut("{keepId}")]
+   [Authorize]
+   public async Task<ActionResult<Keep>> updateKeep(int keepId, [FromBody] Keep updateData){
+      try {
+         Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+         updateData.Id = keepId;
+         Keep keep = _keepService.updateKeep(updateData, userInfo.Id);
+         return Ok(keep);
+      } catch (Exception e) {
+         return BadRequest(e.Message);
+      }
+   }
 }
+
