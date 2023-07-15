@@ -19,11 +19,11 @@ class KeepsService{
       logger.log("Creating keep", keepData);
    }
 
-   // async createRecipe(recipeData){
-   //    const res = await api.post('api/recipes', recipeData);
-   //    AppState.recipes.push(new Recipe(res.data));
-   //    logger.log("Creating recipe", recipeData);
-   // }
+   async deleteKeep(keepId){
+      const res = await api.delete('api/keeps/' + keepId)
+      console.log("Deleted keep", keepId)
+      AppState.keeps = AppState.keeps.filter(k => k.id != keepId)
+   }
 }
 
 export const keepsService = new KeepsService();

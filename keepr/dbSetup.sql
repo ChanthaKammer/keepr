@@ -7,6 +7,9 @@ CREATE TABLE IF NOT EXISTS accounts(
   picture varchar(255) COMMENT 'User Picture'
 ) default charset utf8 COMMENT '';
 
+
+ALTER TABLE accounts
+ADD coverImg VARCHAR (255) NOT NULL COMMENT 'Cover Image';
 SELECT * FROM accounts;
 
 CREATE TABLE IF NOT EXISTS keeps(
