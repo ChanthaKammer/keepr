@@ -29,6 +29,20 @@ public class VaultsRepository{
       return vault;
    }
 
+   internal void editVault(Vault vault)
+   {
+      string sql = @"
+      UPDATE vaults
+      SET
+      name = @name,
+      description = @description,
+      img = @img,
+      isPrivate = @isPrivate,
+      WHERE id = @id;
+      ";
+      _db.Execute(sql, vault);
+   }
+
    internal Vault getById(int vaultId){
       string sql = @"
       SELECT vault.*,

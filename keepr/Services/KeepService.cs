@@ -28,7 +28,7 @@ public class KeepService{
    internal Keep updateKeep(Keep updateData, string userId){
       Keep original = getById(updateData.Id);
       if(original.CreatorId != userId){
-         throw new Exception($"You are not allowed to delete recipe: {updateData.Id}");
+         throw new Exception($"You are not allowed to delete Keep: {updateData.Id}");
       }
       original.Name = updateData.Name != null ? updateData.Name : original.Name;
       original.Description = updateData.Description != null ? updateData.Description : original.Description;

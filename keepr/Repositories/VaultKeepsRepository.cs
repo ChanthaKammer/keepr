@@ -36,6 +36,14 @@ public class VaultKeepsRepository{
       return vaultKeep;
    }
 
+   internal int DeleteVaultKeep(int vaultKeepId)
+   {
+      string sql = @"
+      DELETE FROM vaultkeeps where id = @vaultKeepId LIMIT 1;";
+      int rows = _db.Execute(sql, new {vaultKeepId});
+      return rows;
+   }
+
    internal VaultKeep getById(int vaultKeepId)
    {
       string sql = @"

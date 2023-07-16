@@ -12,6 +12,8 @@ public class VaultKeepsController : ControllerBase{
       _vaultKeepService = vaultKeepService;
    }
 
+   //NEED TO GET VAULTKEEPS BY VAULTID
+
    [HttpPost]
    [Authorize]
    public async Task<ActionResult<VaultKeep>> createVaultKeep([FromBody] VaultKeep vaultKeepData){
