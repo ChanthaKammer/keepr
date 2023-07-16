@@ -27,6 +27,14 @@ import VaultForm from '../components/VaultForm.vue.js';
       <VaultForm/>
     </Modal>
   </section>
+  <section class="container-fluid d-flex justify-content-center mt-2">
+    <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" aria-controls="keepDetailsModal">
+      Keep Details
+    </button>
+    <Modal id="keepDetailsModal">
+      <KeepDetailsCard/>
+    </Modal>
+  </section>
   <section class="container-fluid">
     <div class="row">
       <div class="col-md-12" v-for="k in keeps" :key="k.id">
@@ -37,7 +45,7 @@ import VaultForm from '../components/VaultForm.vue.js';
   <section class="container-fluid">
     <VaultCard/>
   </section>
-  <KeepDetailsCard/>
+
 </template>
 
 <script>
