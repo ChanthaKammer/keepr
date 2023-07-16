@@ -1,5 +1,5 @@
 <template>
-   <div class="col-md-3 p-4">
+   <div class="p-4">
       <div class="d-flex flex-column recipe-card justify-content-center position-relative ">
          <img
          :src="keep.img" class="img-fluid object-fit-cover elevation-5 rounded-3"/>
