@@ -9,6 +9,8 @@ import VaultForm from '../components/VaultForm.vue.js';
       </h1>
     </div>
   </div> -->
+  <h1 class="f-inter">Inter</h1>
+  <h1 class="f-roboto">Roboto</h1>
   <section class="container-fluid d-flex justify-content-center mt-2">
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#createKeepModal" aria-controls="createKeepModal">
       Create Keep
@@ -35,12 +37,14 @@ import VaultForm from '../components/VaultForm.vue.js';
   <section class="container-fluid">
     <VaultCard/>
   </section>
+  <KeepDetailsCard/>
 </template>
 
 <script>
 import { AppState } from '../AppState.js';
 import KeepForm from '../components/KeepForm.vue';
 import KeepCard from '../components/KeepCard.vue';
+import KeepDetailsCard from '../components/KeepDetailsCard.vue';
 import VaultForm from '../components/VaultForm.vue';
 import VaultCard from '../components/VaultCard.vue'
 import { computed } from 'vue';
@@ -54,7 +58,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .home {
   display: grid;
   height: 80vh;
@@ -73,5 +77,18 @@ export default {
       object-position: center;
     }
   }
+}
+
+.f-flow{
+  font-family: 'Flow Circular', cursive;
+}
+.f-inter{
+  font-family: 'Inter', sans-serif;
+  color: rgb(76, 160, 202);
+}
+
+.f-roboto{
+  font-family: 'Roboto Slab', serif;
+  color: rgb(47, 171, 216);
 }
 </style>
