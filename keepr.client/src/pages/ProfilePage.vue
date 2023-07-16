@@ -75,14 +75,9 @@ import AccountForm from '../components/AccountForm.vue.js';
    </Modal>
 </section>
 <section class="container-fluid">
-   <div class="row">
-      <div class="col-md-12" v-for="k in keeps" :key="k.id">
+   <div class="row" v-for="k in keeps" :key="k.id">
       <KeepCard :keep="k"/>
-      </div>
    </div>
-</section>
-<section class="container-fluid">
-   <VaultCard/>
 </section>
 
 </template>
