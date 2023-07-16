@@ -12,6 +12,11 @@ import AccountForm from '../components/AccountForm.vue.js';
   </div> -->
   <h1 class="f-inter">Inter</h1>
   <h1 class="f-roboto">Roboto</h1>
+  <router-link class="navbar-brand d-flex justify-content-center" :to="{ name: 'Profile' }">
+    <button class="btn btn-secondary" type="button" >
+      Profile Page
+    </button>
+  </router-link>
   <section class="container-fluid d-flex justify-content-center mt-2">
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#createKeepModal" aria-controls="createKeepModal">
       Create Keep
