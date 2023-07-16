@@ -7,6 +7,7 @@
 import VaultForm from '../components/VaultForm.vue.js';
         Vue 3 Starter Keep
       </h1>
+import AccountForm from '../components/AccountForm.vue.js';
     </div>
   </div> -->
   <h1 class="f-inter">Inter</h1>
@@ -35,6 +36,14 @@ import VaultForm from '../components/VaultForm.vue.js';
       <KeepDetailsCard/>
     </Modal>
   </section>
+  <section class="container-fluid d-flex justify-content-center mt-2">
+    <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#accountModal" aria-controls="accountModal">
+      Edit Account
+    </button>
+    <Modal id="accountModal">
+      <AccountForm/>
+    </Modal>
+  </section>
   <section class="container-fluid">
     <div class="row">
       <div class="col-md-12" v-for="k in keeps" :key="k.id">
@@ -50,6 +59,7 @@ import VaultForm from '../components/VaultForm.vue.js';
 
 <script>
 import { AppState } from '../AppState.js';
+import AccountForm from '../components/AccountForm.vue';
 import KeepForm from '../components/KeepForm.vue';
 import KeepCard from '../components/KeepCard.vue';
 import KeepDetailsCard from '../components/KeepDetailsCard.vue';
@@ -62,7 +72,7 @@ export default {
           keeps: computed(() => AppState.keeps)
         };
     },
-    components: { KeepForm, KeepCard, VaultForm, VaultCard }
+    components: { KeepForm, KeepCard, VaultForm, VaultCard, AccountForm }
 }
 </script>
 
