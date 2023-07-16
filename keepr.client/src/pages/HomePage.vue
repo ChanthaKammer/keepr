@@ -32,9 +32,9 @@ import AccountForm from '../components/AccountForm.vue.js';
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" aria-controls="keepDetailsModal">
       Keep Details
     </button>
-    <Modal id="keepDetailsModal">
+    <KeepDetailsModal id="keepDetailsModal">
       <KeepDetailsCard/>
-    </Modal>
+    </KeepDetailsModal>
   </section>
   <section class="container-fluid d-flex justify-content-center mt-2">
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#accountModal" aria-controls="accountModal">
@@ -63,6 +63,7 @@ import AccountForm from '../components/AccountForm.vue';
 import KeepForm from '../components/KeepForm.vue';
 import KeepCard from '../components/KeepCard.vue';
 import KeepDetailsCard from '../components/KeepDetailsCard.vue';
+import KeepDetailsModal from '../components/KeepDetailsModal.vue'
 import VaultForm from '../components/VaultForm.vue';
 import VaultCard from '../components/VaultCard.vue'
 import { computed } from 'vue';
@@ -72,7 +73,7 @@ export default {
           keeps: computed(() => AppState.keeps)
         };
     },
-    components: { KeepForm, KeepCard, VaultForm, VaultCard, AccountForm }
+    components: { KeepForm, KeepCard, KeepDetailsModal,  VaultForm, VaultCard, AccountForm }
 }
 </script>
 

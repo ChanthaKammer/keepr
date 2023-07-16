@@ -1,7 +1,7 @@
 <template>
-   <div class="container-fluid bg-dark rounded-5">
+   <div class="container-fluid bg-dark">
       <div class="modal-content" >
-      <div class="modal-body container-fluid">
+      <div class="modal-body container-fluid p-0">
          <section class="row">
             <div class="col-md-6 col-12">
                <img class="img-fluid object-fit-cover"
@@ -18,8 +18,24 @@
                      <h1 class="text-center f-inter">Keep Name</h1>
                      <h2>Keep Description</h2>
                   </div>
-                  <div class="col-12">
-                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Save</button>
+                  <div class="col-12 text-end">
+                     <div class="row">
+                        <div class="col-6">
+                              <div class="d-flex mb-3">
+                                 <select class="form-select" aria-label="Type Selection" placeholder="">
+                                          <option selected>Select Vault</option>
+                                          <option value="sandwich">Sandwich</option>
+                                          <option value="soup">Soup</option>
+                                          <option value="miata">Miata</option>
+                                          <option value="Miscalanias">Miscalanias</option>
+                                 </select>
+                                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Save</button>
+                              </div>
+                        </div>
+                        <div class="col-6">
+
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>
@@ -45,6 +61,6 @@ import { logger } from '../utils/Logger.js';
 
 <style scoped lang="scss">
    * {
-      border: 1px solid green
+      border: 0px solid green
    }
 </style>
