@@ -11,8 +11,8 @@
             <div class="col-md-6 col-12 p-3">
                <div class="row h-100 justify-content-between">
                   <div class="col-12">
-                     <i class="mdi mdi-eye-outline fs-1"></i>
-                     <i class="mdi mdi-bank fs-1"></i>
+                     <i class="mdi mdi-eye-outline fs-1">25</i>
+                     <i class="mdi mdi-bank fs-1">25</i>
                   </div>
                   <div class="col-12">
                      <h1 class="text-center f-inter">Keep Name</h1>
@@ -24,16 +24,14 @@
                               <div class="d-flex mb-3">
                                  <select class="form-select" aria-label="Type Selection" placeholder="">
                                           <option selected>Select Vault</option>
-                                          <option value="sandwich">Sandwich</option>
-                                          <option value="soup">Soup</option>
-                                          <option value="miata">Miata</option>
-                                          <option value="Miscalanias">Miscalanias</option>
+                                          <option v-for="v in fakeVaults" :key="v">{{ v }}</option>
                                  </select>
                                  <button type="button" class="btn btn-success" data-bs-dismiss="modal">Save</button>
                               </div>
                         </div>
-                        <div class="col-6">
-
+                        <div class="col-6 d-flex">
+                           <h1>Hello</h1>
+                           <img class="img-fluid object-fit-cover w-25" src="../assets/img/macaroni.png" alt="">
                         </div>
                      </div>
                   </div>
@@ -49,10 +47,12 @@
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
+import { computed } from 'vue';
    export default {
       setup(){
          return {
-
+            fakeVaults: computed(() => AppState.fakeVaults),
+            account: computed(() => AppState.account)
          }
       }
    }
