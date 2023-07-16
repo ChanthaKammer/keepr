@@ -11,14 +11,28 @@ import AccountForm from '../components/AccountForm.vue.js';
    </div>
 </div> -->
 <section class="container-fluid">
-   <div class="row">
-      <div class="position-relative">
-         <img src="../assets/img/macaroni.png" alt="" class="img-fluid object-fit-cover profile-coverImg">
-         <img src="../assets/img/macaroni.png" alt="" class="img-fluid object-fit-cover profile-picture rounded-circle position-absolute start-50 translate-middle-x">
+   <div class="d-flex flex-row justify-content-center">
+      <div class="col-md-7 rounded pt-3">
+         <img src="../assets/img/macaroni.png" alt="" class="img-fluid object-fit-cover profile-coverImg rounded-3">
+      </div>
+      <div class="text-center">
+         <img src="../assets/img/macaroni.png" alt="" class="img-fluid object-fit-cover profile-picture rounded-circle start-50 translate-middle-x">
       </div>
    </div>
+   <div class="row text-center">
+      <h1>Chantha Kammer</h1>
+      <h2>5 Vaults | 5 Keeps</h2>
+   </div>
 </section>
-<h1 class="f-inter">Inter</h1>
+<section class="container-fluid p-0">
+   <h1 class="f-inter">Vaults</h1>
+   <div class="row">
+      <VaultCard/>
+      <VaultCard/>
+      <VaultCard/>
+      <VaultCard/>
+   </div>
+</section>
 <h1 class="f-roboto">Roboto</h1>
 <section class="container-fluid d-flex justify-content-center mt-2">
    <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#createKeepModal" aria-controls="createKeepModal">
@@ -95,6 +109,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+*{
+   border: 1px solid green;
+}
 .profile-coverImg{
    width: 100%;
    height: 40%;
@@ -102,7 +119,7 @@ export default {
 .profile-picture{
    width: 100px;
    position: absolute;
-   bottom: 60%;
+   bottom: 55%;
 }
 .home {
 display: grid;

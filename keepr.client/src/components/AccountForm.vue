@@ -2,17 +2,17 @@
    <form @submit.prevent="editAccount">
       <div class="modal-body ">
          <div class="container-fluid">
-            <div class="mb-3">
-               <label for="accountName" class="form-label">Name</label>
+            <div class="form-floating mb-3">
                <input type="text" class="form-control" id="accountName" aria-describedby="accountName" v-model="editable.name">
+               <label for="accountName" class="form-label">Name</label>
             </div>
-            <div class="mb-3">
-               <label for="accountPicture" class="form-label">Picture</label>
+            <div class="mb-3 form-floating">
                <input type="text" class="form-control" id="accountPicture" aria-describedby="accountPicture" v-model="editable.picture">
+               <label for="accountPicture" class="form-label">Picture</label>
             </div>
-            <div class="mb-3">
-               <label for="accountCoverImage" class="form-label">Cover Image</label>
+            <div class="mb-3 form-floating">
                <input type="text" class="form-control" id="accountCoverImage" aria-describedby="accountCoverImage" v-model="editable.coverImg">
+               <label for="accountCoverImage" class="form-label">Cover Image</label>
             </div>
             <div class="d-flex justify-content-end gap-2">
                <button type="submit" class="btn btn-primary">Submit</button>
