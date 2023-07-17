@@ -13,7 +13,10 @@ public class VaultKeepService{
       return vaultKeep;
    }
 
-   internal VaultKeep createVaultKeep(VaultKeep vaultKeepData){
+   internal VaultKeep createVaultKeep(VaultKeep vaultKeepData, string userId){
+      if(userId == null){
+         throw new Exception("You are not allowed to create a vaultkeep!");
+      }
       VaultKeep vaultKeep = _repo.createVaultKeep(vaultKeepData);
       return vaultKeep;
    }
