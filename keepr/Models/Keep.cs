@@ -11,3 +11,7 @@ public class Keep {
    public int Kept {get; set;}
    public Account Creator{get;set;}
 }
+
+public class KeepInVault : Keep {
+   public int VaultKeepId {get;set;}
+}

@@ -51,7 +51,7 @@ public class VaultKeepsRepository{
       FROM vaultkeeps vk 
       WHERE vk.id = @vaultKeepId;
       ";
-      VaultKeep vaultKeep = _db.Query<VaultKeep>(sql, vaultKeepId).FirstOrDefault();
+      VaultKeep vaultKeep = _db.Query<VaultKeep>(sql, new{vaultKeepId}).FirstOrDefault();
       return vaultKeep;
    }
 }

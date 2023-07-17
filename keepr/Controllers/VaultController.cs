@@ -24,6 +24,16 @@ public class VaultsController : ControllerBase
       }
    }
 
+   [HttpGet("{vaultId}/keeps")]
+   public ActionResult<List<KeepInVault>> getVaultKeepsByVaultId(int vaultId){
+      try{
+         List<KeepInVault> vaultKeeps = _vaultService.getVaultKeepsByVaultId(vaultId);
+         return Ok(vaultKeeps);
+      } catch(Exception e){
+         return BadRequest(e.Message);
+      }
+   }
+
    [HttpPost]
    [Authorize]
    public async Task<ActionResult<Vault>> createVault([FromBody] Vault vaultData){

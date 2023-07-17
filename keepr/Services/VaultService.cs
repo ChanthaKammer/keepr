@@ -44,6 +44,11 @@ public class VaultService{
       if(rows > 1) throw new Exception("Too many rows deleted, check db");
       return vault;
    }
+
+   internal List<KeepInVault> getVaultKeepsByVaultId(int vaultId)
+   {
+      return _repo.getVaultKeepsByVaultId(vaultId);
+   }
 }
 
 //PUBLIC AND PRIVATE CAN BE HANDLED IN ONE FUNCTION HERE LOGIC STAYS IN THE SERVICE

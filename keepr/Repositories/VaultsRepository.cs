@@ -66,7 +66,30 @@ public class VaultsRepository{
          return vault;
       }, new {vaultId}).FirstOrDefault();
       return vault;
-   } 
+   }
+
+   internal List<KeepInVault> getVaultKeepsByVaultId(int vaultId)
+   {
+      var sql = @"
+      SELECT
+      vk.*,
+      keep.*,
+      acc.*
+      FROM keeps keep
+      JOIN vaultkeeps vk ON vk.keepId = keep.Id
+      JOIN accounts acc ON keep.creatorId = acc.Id
+      WHERE vk.vaultId = @vaultId
+      ;";
+
+      List<KeepInVault> vaultKeeps = _db.Query<VaultKeep, KeepInVault, Account, KeepInVault>(sql,(vaultKeep, keep, acc) =>
+      {
+         keep.Id = vaultKeep.KeepId;
+         keep.Creator = acc;
+         keep.VaultKeepId = vaultKeep.Id;
+         return keep;
+      }, new {vaultId}).ToList();
+      return vaultKeeps;
+   }
 }
 
 //   public int Id { get; set; }
