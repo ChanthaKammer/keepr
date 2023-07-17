@@ -14,7 +14,6 @@ public class VaultsController : ControllerBase
    }
 
    [HttpGet("{vaultId}")]
-
    public async Task<ActionResult<Vault>> getVaultById(int vaultId){
       try{
          Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
@@ -38,4 +37,28 @@ public class VaultsController : ControllerBase
       }
    }
 
+   [HttpPut("{vaultId}")]
+   [Authorize]
+   public async Task<ActionResult<Vault>> updateVault(int vaultId, [FromBody] Vault updateData){
+      try{
+         Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+         updateData.Id = vaultId;
+         Vault vault = _vaultService.updateVault(updateData, userInfo?.Id);
+         return Ok(vault);
+      } catch (Exception e){
+         return BadRequest(e.Message);
+      }
+   }
+
+   [HttpDelete("{vaultId}")]
+   [Authorize]
+   public async Task<ActionResult<Vault>> deleteVault(int vaultId, string userId){
+      try{
+      Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+      Vault vault = _vaultService.deleteVault(vaultId, userInfo.Id);
+      return Ok(vault);
+      } catch (Exception e){
+         return BadRequest(e.Message);
+      }
+   }
 }

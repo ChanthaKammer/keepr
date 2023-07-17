@@ -29,6 +29,15 @@ public class VaultsRepository{
       return vault;
    }
 
+   internal int deleteVault(int vaultId)
+   {
+      string sql = @"
+      @DELETE FROM vaults WHERE id = @vaultId LIMIT 1;
+      ";
+      int rows = _db.Execute(sql, new {vaultId});
+      return rows;
+   }
+
    internal void editVault(Vault vault)
    {
       string sql = @"
