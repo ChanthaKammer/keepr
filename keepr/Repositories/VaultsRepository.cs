@@ -32,7 +32,7 @@ public class VaultsRepository{
    internal int deleteVault(int vaultId)
    {
       string sql = @"
-      @DELETE FROM vaults WHERE id = @vaultId LIMIT 1;
+      DELETE FROM vaults WHERE id = @vaultId LIMIT 1;
       ";
       int rows = _db.Execute(sql, new {vaultId});
       return rows;
