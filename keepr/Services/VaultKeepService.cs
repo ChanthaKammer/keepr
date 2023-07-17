@@ -2,9 +2,11 @@ namespace keepr.Services;
 
 public class VaultKeepService{
    private readonly VaultKeepsRepository  _repo;
+   private readonly VaultService _vaultService;
 
-   public VaultKeepService(VaultKeepsRepository repo){
+   public VaultKeepService(VaultKeepsRepository repo, VaultService vaultService){
       _repo = repo;
+      _vaultService = vaultService;
    }
 
    internal VaultKeep getById(int vaultKeepId){
@@ -16,6 +18,10 @@ public class VaultKeepService{
    internal VaultKeep createVaultKeep(VaultKeep vaultKeepData, string userId){
       if(userId == null){
          throw new Exception("You are not allowed to create a vaultkeep!");
+      }
+      Vault vault = _vaultService.getById(vaultKeepData.VaultId, userId);
+      if(vault.CreatorId != userId){
+         throw new Exception("You are not allowed to create a vaultkeep in this vault");
       }
       VaultKeep vaultKeep = _repo.createVaultKeep(vaultKeepData);
       return vaultKeep;
@@ -31,16 +37,4 @@ public class VaultKeepService{
       if(rows > 1) throw new Exception("Too many rows deleted, check db.");
       return vaultKeep;
    }
-
-   // internal Vault getById(int vaultId, string userId){
-   //    Vault vault = _repo.getById(vaultId);
-   //    if(vault == null) throw new Exception($"No vault found with id: {vaultId}");
-   //    if(vault.CreatorId != userId && vault.isPrivate){
-   //       throw new Exception($"You are not allowed to access this vault.");
-   //    } else {
-   //       return vault;
-   //    } 
-   // }
 }
-
-//PUBLIC AND PRIVATE CAN BE HANDLED IN ONE FUNCTION HERE LOGIC STAYS IN THE SERVICE
