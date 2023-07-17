@@ -58,3 +58,6 @@ CREATE TABLE IF NOT EXISTS vaultkeeps(
 SHOW ENGINE INNODB STATUS;
 
 
+SELECT *
+FROM keeps keep
+WHERE keep.creatorId = '64a76eae48f84949dfd6247a';"

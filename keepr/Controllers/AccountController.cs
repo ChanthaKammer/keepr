@@ -5,12 +5,12 @@ namespace keepr.Controllers;
 public class AccountController : ControllerBase
 {
   private readonly AccountService _accountService;
-  private readonly Auth0Provider _auth0Provider;
+  private readonly Auth0Provider _auth0;
 
-  public AccountController(AccountService accountService, Auth0Provider auth0Provider)
+  public AccountController(AccountService accountService, Auth0Provider auth0)
   {
     _accountService = accountService;
-    _auth0Provider = auth0Provider;
+    _auth0 = auth0;
   }
 
   [HttpGet]
@@ -19,11 +19,22 @@ public class AccountController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
       return Ok(_accountService.GetOrCreateProfile(userInfo));
     }
     catch (Exception e)
     {
+      return BadRequest(e.Message);
+    }
+  }
+  [HttpGet("vaults")]
+  [Authorize]
+  public async Task<ActionResult<List<Vault>>>getMyVaults(string userId){
+    try{
+      Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+      List<Vault> vaults = _accountService.getMyVaults(userInfo.Id);
+      return Ok(vaults);
+    } catch (Exception e){
       return BadRequest(e.Message);
     }
   }

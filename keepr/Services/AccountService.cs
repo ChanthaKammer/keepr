@@ -32,4 +32,11 @@ public class AccountService
     original.CoverImg = editData.CoverImg.Length > 0 ? editData.CoverImg : original.CoverImg;
     return _repo.Edit(original);
   }
+
+  internal List<Vault> getMyVaults(string userId)
+  {
+    List<Vault> vaults = _repo.getMyVaults(userId);
+    if(userId == null) throw new Exception("No user Id found");
+    return vaults;
+  }
 }

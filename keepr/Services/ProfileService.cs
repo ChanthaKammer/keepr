@@ -14,6 +14,12 @@ public class ProfileService
       return keeps;
    }
 
+   internal List<Vault> getVaultsByProfileId(string profileId){
+      List<Vault> vaults = _repo.getVaultsByProfileId(profileId);
+      List<Vault> filteredVaults = vaults.FindAll(vault => vault.isPrivate == false);
+      return filteredVaults;
+   }
+
    internal object getProfileById(string profileId)
    {
       return _repo.getProfileById(profileId);

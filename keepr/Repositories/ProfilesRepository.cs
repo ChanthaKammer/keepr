@@ -11,13 +11,28 @@ public class ProfileRepository
    internal List<Keep> getKeepsByProfileId(string profileId)
    {
       string sql = @"
-         SELECT * FROM keeps
-         WHERE creatorId = @profileId";
+         SELECT *
+         FROM keeps keep
+         JOIN accounts acc on acc.id = keep.creatorId
+         WHERE keep.creatorId = @profileId;";
       List<Keep> keeps = _db.Query<Keep, Profile, Keep>(sql, (keep, profile) => {
-         keep.Creator = profile;
+         keep.CreatorId = profile.Id;
          return keep;
-      }).ToList();
+      }, new {profileId}).ToList();
       return keeps;
+   }
+
+   internal List<Vault> getVaultsByProfileId(string profileId){
+      string sql = @"
+      SELECT *
+      FROM vaults vault
+      JOIN accounts acc on acc.id = vault.creatorId
+      WHERE vault.creatorId = @profileId;";
+      List<Vault> vaults = _db.Query<Vault, Profile, Vault>(sql, (vault, profile) => {
+         vault.CreatorId = profile.Id;
+         return vault;
+      }, new {profileId}).ToList();
+      return vaults;
    }
 
    internal Profile getProfileById(string profileId)

@@ -44,5 +44,19 @@ public class AccountsRepository
     _db.Execute(sql, update);
     return update;
   }
+
+  internal List<Vault> getMyVaults(string userId)
+  {
+    string sql = @"
+    SELECT *
+    FROM vaults vault
+    JOIN accounts acc on acc.id = vault.creatorId
+    WHERE vault.creatorId = @userId;";
+    List<Vault> vaults = _db.Query<Vault, Account, Vault>(sql, (vault, acc) => {
+      vault.CreatorId = acc.Id;
+      return vault;
+    }, new {userId}).ToList();
+    return vaults;
+  }
 }
 
