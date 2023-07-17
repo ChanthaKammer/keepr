@@ -4,12 +4,13 @@ CREATE TABLE IF NOT EXISTS accounts(
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
   name varchar(255) COMMENT 'User Name',
   email varchar(255) COMMENT 'User Email',
-  picture varchar(255) COMMENT 'User Picture'
+  picture varchar(255) COMMENT 'User Picture',
+  coverImg VARCHAR(255) COMMENT 'Cover Image'
 ) default charset utf8 COMMENT '';
 
 
 ALTER TABLE accounts
-ADD coverImg VARCHAR (255) NOT NULL COMMENT 'Cover Image';
+ADD coverImg VARCHAR (255) COMMENT 'Cover Image';
 SELECT * FROM accounts;
 
 CREATE TABLE IF NOT EXISTS keeps(

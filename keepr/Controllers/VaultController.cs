@@ -25,9 +25,11 @@ public class VaultsController : ControllerBase
    }
 
    [HttpGet("{vaultId}/keeps")]
-   public ActionResult<List<KeepInVault>> getVaultKeepsByVaultId(int vaultId){
+   [Authorize]
+   public async Task<ActionResult<List<KeepInVault>>> getVaultKeepsByVaultId(int vaultId, string userId){
       try{
-         List<KeepInVault> vaultKeeps = _vaultService.getVaultKeepsByVaultId(vaultId);
+         Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+         List<KeepInVault> vaultKeeps = _vaultService.getVaultKeepsByVaultId(vaultId, userId);
          return Ok(vaultKeeps);
       } catch(Exception e){
          return BadRequest(e.Message);
@@ -61,7 +63,6 @@ public class VaultsController : ControllerBase
    }
 
    [HttpDelete("{vaultId}")]
-   [Authorize]
    public async Task<ActionResult<Vault>> deleteVault(int vaultId, string userId){
       try{
       Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);

@@ -15,7 +15,7 @@ public class VaultService{
    internal Vault getById(int vaultId, string userId){
       Vault vault = _repo.getById(vaultId);
       if(vault == null) throw new Exception($"No vault found with id: {vaultId}");
-      if(vault.CreatorId != userId && vault.isPrivate){
+      if(vault.CreatorId != userId && vault.isPrivate || vault.isPrivate && vault.CreatorId != userId){
          throw new Exception($"You are not allowed to access this vault.");
       } else {
          return vault;
@@ -45,8 +45,12 @@ public class VaultService{
       return vault;
    }
 
-   internal List<KeepInVault> getVaultKeepsByVaultId(int vaultId)
+   internal List<KeepInVault> getVaultKeepsByVaultId(int vaultId, string userId)
    {
+      Vault vault = getById(vaultId, userId);
+      if(vault.isPrivate && vault.CreatorId != userId){
+         throw new Exception("You are not allowed to access this vault");
+      }
       return _repo.getVaultKeepsByVaultId(vaultId);
    }
 }
