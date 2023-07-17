@@ -46,8 +46,8 @@ public class VaultsRepository{
       name = @name,
       description = @description,
       img = @img,
-      isPrivate = @isPrivate,
-      WHERE id = @id;
+      isPrivate = @isPrivate
+      WHERE id = @id
       ";
       _db.Execute(sql, vault);
    }
