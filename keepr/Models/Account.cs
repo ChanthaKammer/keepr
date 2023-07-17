@@ -9,3 +9,5 @@ public class Account
 
   public string CoverImg {get;set;}
 }
+
+public class Profile : Account{}

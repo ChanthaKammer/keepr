@@ -34,6 +34,9 @@ public class Startup
     services.AddScoped<AccountsRepository>();
     services.AddScoped<AccountService>();
 
+    services.AddScoped<ProfileRepository>();
+    services.AddScoped<ProfileService>();
+
     services.AddScoped<KeepsRepository>();
     services.AddScoped<KeepService>();
 
