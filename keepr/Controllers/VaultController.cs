@@ -25,7 +25,6 @@ public class VaultsController : ControllerBase
    }
 
    [HttpGet("{vaultId}/keeps")]
-   [Authorize]
    public async Task<ActionResult<List<KeepInVault>>> getVaultKeepsByVaultId(int vaultId, string userId){
       try{
          Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
