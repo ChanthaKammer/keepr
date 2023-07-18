@@ -5,13 +5,22 @@
         <!-- <img alt="logo" src="../assets/img/cw-logo.png" height="45" /> -->
         <h1 class="f-inter fs-1">Keep<span class="f-roboto fs-1">R</span></h1>
         <div class="dropdown ps-3">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <!-- <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown button
-          </button>
+          </button> -->
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
           <ul class="dropdown-menu">
-            <li><button class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createKeepModal">New Keep</button></li>
-            <li><button class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createVaultModal">New Vault</button></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createKeepModal">New Keep</a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createVaultModal">New Vault</a></li>
           </ul>
+          <!-- <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul> -->
         </div>
       </div>
     </router-link>

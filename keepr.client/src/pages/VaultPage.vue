@@ -141,7 +141,7 @@ import { vaultKeepService } from '../services/VaultKeepService.js';
    background: linear-gradient(0deg, rgba(0,0,0,0.6) 20%, rgba(0, 0, 0, 0)100%);
    }
    *{
-      border: 1px solid green;
+      border: 0px solid green;
    }
    .profile-coverImg{
       width: 100%;
