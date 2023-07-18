@@ -13,14 +13,14 @@ import AccountForm from '../components/AccountForm.vue.js';
 <section class="container-fluid h-50">
     <div class="position-relative d-flex flex-row justify-content-center">
       <div class="col-md-7 rounded pt-3">
-          <img src="../assets/img/macaroni.png" alt="" class="img-fluid object-fit-cover profile-coverImg rounded-3">
-          <img src="../assets/img/holyc.png" alt="" class="img-fluid object-fit-cover profile-picture rounded-circle position-absolute">
+          <img :src="account.coverImg" alt="" class="img-fluid object-fit-cover profile-coverImg rounded-3">
+          <img :src="account.picture" alt="" class="img-fluid object-fit-cover profile-picture rounded-circle position-absolute">
       </div>
       <!-- <div class="text-center">
       </div> -->
     </div>
     <div class="row text-center">
-      <h1>Chantha Kammer</h1>
+      <h1>{{ account.name }}</h1>
       <h2>{{myVaults.length}} | {{ accountKeeps.length }}</h2>
     </div>
 </section>
