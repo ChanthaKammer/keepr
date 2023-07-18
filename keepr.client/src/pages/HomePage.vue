@@ -58,8 +58,8 @@ import AccountForm from '../components/AccountForm.vue.js';
     </Modal>
   </section>
   <section class="container-fluid">
-    <div class="row">
-      <div class="col-md-12" v-for="k in keeps" :key="k.id">
+    <div class="row" data-masonry='{"percentPosition": true }'>
+      <div class="col-md-3 col-6" v-for="k in keeps" :key="k.id">
         <KeepCard :keep="k"/>
       </div>
     </div>
@@ -67,7 +67,6 @@ import AccountForm from '../components/AccountForm.vue.js';
   <section class="container-fluid">
     <VaultCard/>
   </section>
-
 </template>
 
 <script>
@@ -81,6 +80,7 @@ import VaultForm from '../components/VaultForm.vue';
 import VaultCard from '../components/VaultCard.vue'
 import VaultKeepModal from '../components/VaultKeepModal.vue';
 import { computed } from 'vue';
+import masonry from 'masonry-layout';
 export default {
     setup() {
         return {
@@ -91,7 +91,37 @@ export default {
 }
 </script>
 
-<style lang="scss">
+
+<style scoped lang="scss">
+body {
+  margin: 0;
+  padding: 1rem;
+}
+
+.masonry-with-flex {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 1000px;
+  div {
+    width: 150px;
+    background: #EC985A;
+    color: white;
+    margin: 0 1rem 1rem 0;
+    text-align: center;
+    font-family: system-ui;
+    font-weight: 900;
+    font-size: 2rem;
+  } 
+  @for $i from 1 through 36 { 
+    div:nth-child(#{$i}) {
+      $h: (random(400) + 100) + px;
+      height: $h;
+      line-height: $h;
+    }
+  }
+}
+
 .home {
   display: grid;
   height: 80vh;

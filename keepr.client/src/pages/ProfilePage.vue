@@ -11,13 +11,13 @@ import AccountForm from '../components/AccountForm.vue.js';
    </div>
 </div> -->
 <section class="container-fluid">
-   <div class="d-flex flex-row justify-content-center">
+   <div class="position-relative d-flex flex-row justify-content-center">
       <div class="col-md-7 rounded pt-3">
          <img src="../assets/img/macaroni.png" alt="" class="img-fluid object-fit-cover profile-coverImg rounded-3">
+         <img src="../assets/img/holyc.png" alt="" class="img-fluid object-fit-cover profile-picture rounded-circle position-absolute">
       </div>
-      <div class="text-center">
-         <img src="../assets/img/macaroni.png" alt="" class="img-fluid object-fit-cover profile-picture rounded-circle start-50 translate-middle-x">
-      </div>
+      <!-- <div class="text-center">
+      </div> -->
    </div>
    <div class="row text-center">
       <h1>Chantha Kammer</h1>
@@ -116,6 +116,7 @@ export default {
 .profile-picture{
    width: 100px;
    position: absolute;
+   left: 45%;
    bottom: 55%;
 }
 .home {
