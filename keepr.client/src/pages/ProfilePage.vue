@@ -25,9 +25,11 @@ import AccountForm from '../components/AccountForm.vue.js';
    </div>
 </section>
 <section class="container-fluid p-0">
-   <div class="masonry-with-columns">
-         <div class="masonry-item" v-for="v in activeProfileVaults" :key="v.id">
+   <div class="row">
+         <div class="col-md-4" v-for="v in activeProfileVaults" :key="v.id">
+            <RouterLink :to="{name: 'Vault', params: {id: v.id}}">
                <VaultCard :vault="v"/>
+            </RouterLink>
          </div>
    </div>
 </section>
@@ -48,17 +50,17 @@ import AccountForm from '../components/AccountForm.vue.js';
    </Modal>
 </section> -->
 <section class="container-fluid d-flex justify-content-center mt-2">
-   <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" aria-controls="keepDetailsModal">
+   <!-- <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" aria-controls="keepDetailsModal">
       Keep Details
-   </button>
+   </button> -->
    <KeepDetailsModal id="keepDetailsModal">
       <KeepDetailsCard/>
    </KeepDetailsModal>
 </section>
 <section class="container-fluid d-flex justify-content-center mt-2">
-   <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal" aria-controls="vaultKeepDetailsModal">
+   <!-- <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal" aria-controls="vaultKeepDetailsModal">
       Vault Keep Details
-   </button>
+   </button> -->
    <KeepDetailsModal id="vaultKeepDetailsModal">
       <VaultKeepModal/>
    </KeepDetailsModal>
@@ -91,6 +93,7 @@ import KeepForm from '../components/KeepForm.vue';
 import KeepCard from '../components/KeepCard.vue';
 import KeepDetailsCard from '../components/KeepDetailsCard.vue';
 import KeepDetailsModal from '../components/KeepDetailsModal.vue'
+import { vaultsService } from '../services/VaultsService.js';
 import VaultForm from '../components/VaultForm.vue';
 import VaultCard from '../components/VaultCard.vue'
 import VaultKeepModal from '../components/VaultKeepModal.vue';

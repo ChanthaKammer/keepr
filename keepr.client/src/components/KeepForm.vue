@@ -15,7 +15,7 @@
                <label for="keepDescription" class="form-label">Keep Description</label>
             </div>
             <div class="d-flex justify-content-end gap-2">
-               <button type="submit" class="btn btn-primary">Submit</button>
+               <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
          </div>
@@ -31,6 +31,14 @@ import { keepsService} from '../services/KeepsService.js'
 import {ref} from 'vue';
    export default {
       setup(){
+         async function getMyVaults(){
+            try{
+               await vault
+            } catch (e){
+               Pop.error(e)
+               logger.log(e)
+            }
+         }
          const editable = ref({});
          return {
             editable,

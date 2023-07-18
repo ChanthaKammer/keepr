@@ -32,6 +32,7 @@ import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
 // import { keepsService } from '../services/KeepsService.js'
 import {ref} from 'vue';
+import { vaultsService } from '../services/VaultsService.js';
    export default {
       setup(){
          const editable = ref({});
@@ -39,8 +40,7 @@ import {ref} from 'vue';
             editable,
             async createVault(){
                try {
-                  logger.log("Creating Vault", editable.value)
-                  // await keepsService.createKeep(editable.value);
+                  await vaultsService.createVault(editable.value);
                } catch (error) {
                   Pop.error(error)
                   logger.log(error)

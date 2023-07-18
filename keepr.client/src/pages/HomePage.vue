@@ -64,9 +64,6 @@ import AccountForm from '../components/AccountForm.vue.js';
       </div>
     </div>
   </section>
-  <section class="container-fluid">
-    <VaultCard/>
-  </section>
 </template>
 
 <script>
