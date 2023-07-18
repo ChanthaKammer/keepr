@@ -70,6 +70,7 @@ import AccountForm from '../components/AccountForm.vue.js';
 </template>
 
 <script>
+import masonry from 'masonry-layout';
 import { AppState } from '../AppState.js';
 import AccountForm from '../components/AccountForm.vue';
 import KeepForm from '../components/KeepForm.vue';
@@ -80,7 +81,6 @@ import VaultForm from '../components/VaultForm.vue';
 import VaultCard from '../components/VaultCard.vue'
 import VaultKeepModal from '../components/VaultKeepModal.vue';
 import { computed } from 'vue';
-import masonry from 'masonry-layout';
 export default {
     setup() {
         return {

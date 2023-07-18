@@ -18,7 +18,14 @@ class KeepsService{
       AppState.keeps.push(new Keep(res.data));
       logger.log("Creating keep", keepData);
    }
+   
+   async getKeepById(keepId){
+      const res = await api.get('api/keeps/' + keepId);
+   }
 
+   async editKeep(keepId, keepData){
+      const res = await api.put(`api/keeps/${keepId}` + keepData)
+   }
    async deleteKeep(keepId){
       const res = await api.delete('api/keeps/' + keepId)
       console.log("Deleted keep", keepId)
