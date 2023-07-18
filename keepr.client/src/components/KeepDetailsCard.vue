@@ -5,18 +5,19 @@
          <section class="row">
             <div class="col-md-6 col-12">
                <img class="img-fluid object-fit-cover"
-                     src="../assets/img/macaroni.png"
+                     :src="activeKeep.img"
                      alt="">
             </div>
             <div class="col-md-6 col-12 p-3">
                <div class="row h-100 justify-content-between">
                   <div class="col-12">
-                     <i class="mdi mdi-eye-outline fs-1">25</i>
-                     <i class="mdi mdi-bank fs-1">25</i>
+                     <i class="mdi mdi-eye-outline fs-1">{{ activeKeep.views }}</i>
+                     <i class="mdi mdi-bank fs-1">{{ activeKeep.kept }}</i>
                   </div>
                   <div class="col-12">
-                     <h1 class="text-center f-inter">Keep Name</h1>
-                     <h2>Keep Description</h2>
+                     <h1 class="text-center f-inter">{{ activeKeep.name }}</h1>
+                     <h2>{{ activeKeep.description }}</h2>
+                     <!-- <p>{{ activeKeep.creator }}</p> -->
                   </div>
                   <div class="col-12 text-end">
                      <div class="row">
@@ -30,8 +31,8 @@
                               </div>
                         </div>
                         <div class="col-6 d-flex">
-                           <h1>Hello</h1>
-                           <img class="img-fluid object-fit-cover w-25" src="../assets/img/macaroni.png" alt="">
+                           <h4>{{ activeKeep.creator?.name }}</h4>
+                           <img class="img-fluid object-fit-cover w-25" :src="activeKeep.creator?.picture" alt="">
                         </div>
                      </div>
                   </div>
@@ -52,6 +53,7 @@ import { computed } from 'vue';
       setup(){
          return {
             fakeVaults: computed(() => AppState.fakeVaults),
+            activeKeep: computed(() => AppState.activeKeep),
             account: computed(() => AppState.account)
          }
       }

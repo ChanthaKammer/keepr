@@ -29,7 +29,7 @@ import AccountForm from '../components/AccountForm.vue.js';
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#createVaultModal" aria-controls="createVaultModal">
       Create Vault
     </button>
-    <Modal id="createVaultModal">
+    <Modal id="createVaultModal" :name="Hello">
       <VaultForm/>
     </Modal>
   </section>
@@ -58,9 +58,9 @@ import AccountForm from '../components/AccountForm.vue.js';
     </Modal>
   </section>
   <section class="container-fluid">
-    <div class="row" data-masonry='{"percentPosition": true }'>
-      <div class="col-md-3 col-6" v-for="k in keeps" :key="k.id">
-        <KeepCard :keep="k"/>
+    <div class="masonry-with-columns" data-masonry='{"percentPosition": true }'>
+      <div class="masonry-item" v-for="k in keeps" :key="k.id">
+        <KeepCard :keep="k" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveKeep(k.id)"/>
       </div>
     </div>
   </section>
@@ -79,11 +79,37 @@ import KeepDetailsModal from '../components/KeepDetailsModal.vue'
 import VaultForm from '../components/VaultForm.vue';
 import VaultCard from '../components/VaultCard.vue'
 import VaultKeepModal from '../components/VaultKeepModal.vue';
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { keepsService } from '../services/KeepsService.js';
+import { accountService } from '../services/AccountService.js';
 export default {
     setup() {
+      onMounted(() => {
+        getMyVaults();
+      })
         return {
-          keeps: computed(() => AppState.keeps)
+          async setActiveKeep(keepId){
+            AppState.activeKeep = {};
+            logger.log("Setting active keep", keepId)
+            try{
+              await keepsService.getKeepById(keepId);
+            } catch (e){
+              logger.log(e);
+              Pop.error(e);
+            }
+          },
+          async getMyVaults(){
+            try{
+              await accountService.getAccountVaults()
+            } catch (e){
+              logger.log(e);
+              Pop.error(e);
+            }
+          },
+          keeps: computed(() => AppState.keeps),
+          account: computed(() => AppState.account)
         };
     },
     components: { KeepForm, KeepCard, KeepDetailsModal, VaultForm, VaultCard, VaultKeepModal, AccountForm }
@@ -96,30 +122,22 @@ body {
   margin: 0;
   padding: 1rem;
 }
-
-.masonry-with-flex {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  max-height: 1000px;
-  div {
-    width: 150px;
-    background: #EC985A;
-    color: white;
-    margin: 0 1rem 1rem 0;
-    text-align: center;
-    font-family: system-ui;
-    font-weight: 900;
-    font-size: 2rem;
-  } 
-  @for $i from 1 through 36 { 
-    div:nth-child(#{$i}) {
-      $h: (random(400) + 100) + px;
-      height: $h;
-      line-height: $h;
-    }
-  }
+.masonry-with-columns {
+  columns: 6 200px;
+  column-gap: 1rem;
 }
+.masonry-item {
+  width: 150px;
+  background: #EC985A;
+  color: white;
+  margin: 0 1rem 1rem 0;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-family: system-ui;
+  font-weight: 900;
+  font-size: 2rem;
+} 
 
 .home {
   display: grid;

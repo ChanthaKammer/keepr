@@ -23,10 +23,10 @@
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
+import { computed, onMounted } from 'vue';
    export default {
       setup(){
          return {
-
          }
       }
    }

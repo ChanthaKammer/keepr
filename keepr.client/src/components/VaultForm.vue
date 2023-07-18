@@ -11,13 +11,15 @@
                <label for="keepImage" class="form-label">Image Url</label>
             </div>
             <div class="d-flex justify-content-end gap-2">
-               <button type="submit" class="btn btn-primary">Create Vault</button>
-               <p>Private vaults can only be seen by you.</p>
+               <div>
+                  <p>Private vaults can only be seen by you.</p>
+               </div>
                <input class="form-check-input" type="checkbox" value="" id="privateCheckbox">
                <label class="form-check-label" for="privateCheckbox">
-                  Make Vault Private?
+                  Private
                </label>
-               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary">Create Vault</button>
+               <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
             </div>
          </div>
       </div>
