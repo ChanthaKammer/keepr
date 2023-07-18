@@ -58,8 +58,8 @@ import AccountForm from '../components/AccountForm.vue.js';
     </Modal>
   </section>
   <section class="container-fluid">
-    <div class="row" data-masonry='{"percentPosition": true }'>
-      <div class="col-md-3 col-6" v-for="k in keeps" :key="k.id">
+    <div class="row grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
+      <div class="col-md-4 grid-item" v-for="k in keeps" :key="k.id">
         <KeepCard :keep="k"/>
       </div>
     </div>

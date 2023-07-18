@@ -12,6 +12,9 @@ class VaultsService{
       logger.log("AppState Vaults",AppState.vaults);
    }
 
+   async getVaultById(vaultId){
+      const res = await api.get('/api/vaults/' + vaultId);
+   }
    async editVault(vaultId, vaultData){
       const res = await api.put('api/vaults/' + vaultId, vaultData)
    }
