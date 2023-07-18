@@ -25,7 +25,7 @@ import AccountForm from '../components/AccountForm.vue.js';
    </div>
 </section>
 <section class="container-fluid p-3">
-   <h1 class="f-inter">Vaults</h1>
+   <h1 class="f-roboto p-4">Vaults</h1>
    <div class="row">
          <div class="col-md-4" v-for="v in activeProfileVaults" :key="v.id">
             <RouterLink :to="{name: 'Vault', params: {id: v.id}}">
@@ -66,23 +66,28 @@ import AccountForm from '../components/AccountForm.vue.js';
       <VaultKeepModal/>
    </KeepDetailsModal>
 </section>
-<section class="container-fluid d-flex justify-content-center mt-2">
+<!-- <section class="container-fluid d-flex justify-content-center mt-2">
    <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#accountModal" aria-controls="accountModal">
       Edit Account
    </button>
    <Modal id="accountModal">
       <AccountForm/>
    </Modal>
-</section>
+</section> -->
 <section class="container-fluid">
-   <h1>Keeps</h1>
+   <h1 class="f-roboto p-4">Keeps</h1>
    <div class="masonry-with-columns">
       <div class="masonry-item" v-for="k in activeProfileKeeps" :key="k.id">
          <KeepCard :keep="k" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveKeep(k.id)"/>
       </div>
    </div>
 </section>
-
+<Modal id="createKeepModal">
+   <KeepForm/>
+</Modal>
+<Modal id="createVaultModal">
+   <VaultForm/>
+</Modal>
 </template>
 
 <script>
@@ -170,7 +175,7 @@ export default {
    font-size: 2rem;
 } 
 *{
-   border: 1px solid green;
+   border: 0px solid green;
 }
 .profile-coverImg{
    width: 100%;
@@ -207,7 +212,7 @@ font-family: 'Flow Circular', cursive;
 }
 .f-inter{
 font-family: 'Inter', sans-serif;
-color: rgb(76, 160, 202);
+color: rgb(255, 255, 255);
 }
 
 .f-roboto{

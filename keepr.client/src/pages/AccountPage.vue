@@ -33,7 +33,7 @@ import AccountForm from '../components/AccountForm.vue.js';
     </Modal>
 </section>
 <section class="container-fluid p-0">
-  <h1>Vaults</h1>
+  <h1 class="f-roboto p-4">Vaults</h1>
     <div class="row">
           <div class="col-md-4" v-for="v in myVaults" :key="v.id">
             <RouterLink :to="{name: 'Vault', params: {id: v.id}}">
@@ -83,7 +83,7 @@ import AccountForm from '../components/AccountForm.vue.js';
     </Modal>
 </section> -->
 <section class="container-fluid">
-  <h1>Keeps</h1>
+  <h1 class="f-roboto p-4">Keeps</h1>
     <div class="masonry-with-columns">
       <div class="masonry-item" v-for="k in accountKeeps" :key="k.id">
           <KeepCard :keep="k" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveKeep(k.id)"/>
