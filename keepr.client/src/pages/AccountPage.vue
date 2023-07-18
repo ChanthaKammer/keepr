@@ -7,10 +7,14 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState';
+import { accountService } from '../services/AccountService.js';
 export default {
   setup() {
+    onMounted(() => {
+      accountService.getAccountVaults();
+    })
     return {
       account: computed(() => AppState.account)
     }

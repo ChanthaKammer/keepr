@@ -58,8 +58,8 @@ import AccountForm from '../components/AccountForm.vue.js';
     </Modal>
   </section>
   <section class="container-fluid">
-    <div class="row grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
-      <div class="col-md-4 grid-item" v-for="k in keeps" :key="k.id">
+    <div class="row" data-masonry='{"percentPosition": true }'>
+      <div class="col-md-3 col-6" v-for="k in keeps" :key="k.id">
         <KeepCard :keep="k"/>
       </div>
     </div>
@@ -70,7 +70,6 @@ import AccountForm from '../components/AccountForm.vue.js';
 </template>
 
 <script>
-import masonry from 'masonry-layout';
 import { AppState } from '../AppState.js';
 import AccountForm from '../components/AccountForm.vue';
 import KeepForm from '../components/KeepForm.vue';
@@ -87,7 +86,7 @@ export default {
           keeps: computed(() => AppState.keeps)
         };
     },
-    components: { KeepForm, KeepCard, KeepDetailsModal,  VaultForm, VaultCard, VaultKeepModal, AccountForm }
+    components: { KeepForm, KeepCard, KeepDetailsModal, VaultForm, VaultCard, VaultKeepModal, AccountForm }
 }
 </script>
 

@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import masonry from 'masonry-layout';
 import { computed, onMounted } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
