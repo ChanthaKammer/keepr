@@ -10,7 +10,7 @@ import VaultForm from '../components/VaultForm.vue.js';
 import AccountForm from '../components/AccountForm.vue.js';
     </div>
 </div> -->
-<section class="container-fluid">
+<section class="container-fluid h-50">
     <div class="position-relative d-flex flex-row justify-content-center">
       <div class="col-md-7 rounded pt-3">
           <img src="../assets/img/macaroni.png" alt="" class="img-fluid object-fit-cover profile-coverImg rounded-3">
@@ -85,7 +85,7 @@ import AccountForm from '../components/AccountForm.vue.js';
 <section class="container-fluid">
   <h1 class="f-roboto p-4">Keeps</h1>
     <div class="masonry-with-columns">
-      <div class="masonry-item" v-for="k in accountKeeps" :key="k.id">
+      <div class="masonry-item animate__animated animate__slideInUp animate__fast" v-for="k in accountKeeps" :key="k.id">
           <KeepCard :keep="k" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveKeep(k.id)"/>
       </div>
     </div>
@@ -118,6 +118,7 @@ export default {
       async function getAccountKeeps(){
           try{
             await profileService.getProfileKeeps(account.value.id)
+            logger.log("account id",account.value.id);
           } catch (e) {
             logger.log(e)
           }

@@ -11,7 +11,14 @@
             <h2 class="d-flex justify-content-center">by {{ activeVault?.creator?.name }}</h2>
          </div>
       </div>
-      <h1 class="text-center">5 Keeps</h1>
+      <div class="row justify-content-end align-items-center">
+         <div class="col-4">
+            <h1 class="text-center f-roboto pt-3">5 Keeps</h1>
+         </div>
+         <div class="col-4">
+            <i class="mdi mdi-trash-can-outline fs-2" v-if="activeVault?.creator?.id == account?.id"></i>
+         </div>
+      </div>
    </div>
    <!-- <section class="container-fluid">
       <div class="d-flex flex-row justify-content-center">
@@ -61,7 +68,7 @@
          <KeepDetailsCard/>
       </KeepDetailsModal>
    </section> -->
-   <section class="container-fluid d-flex justify-content-center mt-2">
+   <!-- <section class="container-fluid d-flex justify-content-center mt-2">
       <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal" aria-controls="vaultKeepDetailsModal">
          Vault Keep Details
       </button>
@@ -76,15 +83,20 @@
       <Modal id="accountModal">
          <AccountForm/>
       </Modal>
-   </section>
+   </section> -->
    <section class="container-fluid">
       <div class="row">
-         <div class="col-md-3" v-for="k in activeVaultKeeps" :key="k.id">
-            <KeepCard :keep="k" data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal"/>
+         <div class="col-md-3 animate__animated animate__slideInUp animate__fast" v-for="k in activeVaultKeeps" :key="k.id">
+            <KeepCard :keep="k" data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal" class=""/>
          </div>
       </div>
    </section>
-   
+   <Modal id="createKeepModal">
+   <KeepForm/>
+</Modal>
+<Modal id="createVaultModal">
+   <VaultForm/>
+</Modal>
    </template>
    
    <script>
@@ -129,7 +141,8 @@ import { vaultKeepService } from '../services/VaultKeepService.js';
          })
          return {
             activeVault: computed(() => AppState.activeVault),
-            activeVaultKeeps: computed(() => AppState.activeVaultKeeps)
+            activeVaultKeeps: computed(() => AppState.activeVaultKeeps),
+            account: computed(() => AppState.account)
          };
       },
       components: { KeepForm, KeepCard, KeepDetailsModal,  VaultForm, VaultCard, VaultKeepModal, AccountForm }
