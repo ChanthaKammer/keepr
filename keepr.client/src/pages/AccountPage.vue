@@ -26,7 +26,7 @@ import AccountForm from '../components/AccountForm.vue.js';
 </section>
 <section class="container-fluid p-0">
     <div class="row">
-          <div class="col-md-4" v-for="v in activeProfileVaults" :key="v.id">
+          <div class="col-md-4" v-for="v in myVaults" :key="v.id">
             <RouterLink :to="{name: 'Vault', params: {id: v.id}}">
                 <VaultCard :vault="v"/>
             </RouterLink>
@@ -75,7 +75,7 @@ import AccountForm from '../components/AccountForm.vue.js';
 </section>
 <section class="container-fluid">
     <div class="masonry-with-columns">
-      <div class="masonry-item" v-for="k in activeProfileKeeps" :key="k.id">
+      <div class="masonry-item" v-for="k in accountKeeps" :key="k.id">
           <KeepCard :keep="k" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveKeep(k.id)"/>
       </div>
     </div>
@@ -104,7 +104,7 @@ import { accountService } from '../services/AccountService.js';
 export default {
     setup() {
       const route = useRoute();
-      const account= ref(AppState.account)
+      const account= ref(AppState.account);
       async function getAccountKeeps(){
           try{
             await profileService.getProfileKeeps(account.value.id)
@@ -134,7 +134,9 @@ export default {
                 Pop.error(e);
             }
           },
-          keeps: computed(() => AppState.keeps.filter(k => k.CreatorId == account.value.id)),
+          // keeps: computed(() => AppState.keeps.find(k => k.CreatorId == account.value.id)),
+          myVaults: computed(() => AppState.myVaults),
+          accountKeeps: computed(() => AppState.activeProfileKeeps),
           account: computed(() => AppState.account)
       };
     },
