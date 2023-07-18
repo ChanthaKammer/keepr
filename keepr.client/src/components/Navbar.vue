@@ -9,8 +9,8 @@
             Dropdown button
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">New Keep</a></li>
-            <li><a class="dropdown-item" href="#">New Vault</a></li>
+            <li><button class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createKeepModal">New Keep</button></li>
+            <li><button class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#createVaultModal">New Vault</button></li>
           </ul>
         </div>
       </div>
