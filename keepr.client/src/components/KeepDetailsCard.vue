@@ -8,7 +8,7 @@
                      :src="activeKeep.img"
                      alt="">
             </div>
-            <div class="col-md-6 col-12 p-3">
+            <div class="col-md-6 col-12 p-2">
                <div class="row h-100 justify-content-between">
                   <div class="col-12">
                      <i class="mdi mdi-eye-outline fs-1">{{ activeKeep.views }}</i>
@@ -19,7 +19,7 @@
                      <h2>{{ activeKeep.description }}</h2>
                      <!-- <p>{{ activeKeep.creator }}</p> -->
                   </div>
-                  <div class="col-12 text-end">
+                  <div class="col-12">
                      <div class="row">
                         <div class="col-6">
                               <div class="d-flex mb-3">

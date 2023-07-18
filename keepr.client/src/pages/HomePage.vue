@@ -87,7 +87,6 @@ import { accountService } from '../services/AccountService.js';
 export default {
     setup() {
       onMounted(() => {
-        getMyVaults();
       })
         return {
           async setActiveKeep(keepId){
@@ -123,12 +122,12 @@ body {
   padding: 1rem;
 }
 .masonry-with-columns {
-  columns: 6 200px;
+  columns: 4 300px;
   column-gap: 1rem;
 }
 .masonry-item {
   width: 150px;
-  background: #EC985A;
+  // background: #EC985A;
   color: white;
   margin: 0 1rem 1rem 0;
   display: inline-block;
