@@ -12,11 +12,11 @@ import AccountForm from '../components/AccountForm.vue.js';
   </div> -->
   <h1 class="f-inter">Inter</h1>
   <h1 class="f-roboto">Roboto</h1>
-  <router-link class="navbar-brand d-flex justify-content-center" :to="{ name: 'Profile' }">
+  <!-- <router-link class="navbar-brand d-flex justify-content-center">
     <button class="btn btn-secondary" type="button" >
       Profile Page
     </button>
-  </router-link>
+  </router-link> -->
   <section class="container-fluid d-flex justify-content-center mt-2">
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#createKeepModal" aria-controls="createKeepModal">
       Create Keep
@@ -29,7 +29,7 @@ import AccountForm from '../components/AccountForm.vue.js';
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#createVaultModal" aria-controls="createVaultModal">
       Create Vault
     </button>
-    <Modal id="createVaultModal" :name="Hello">
+    <Modal id="createVaultModal">
       <VaultForm/>
     </Modal>
   </section>
@@ -38,7 +38,7 @@ import AccountForm from '../components/AccountForm.vue.js';
       Keep Details
     </button>
     <KeepDetailsModal id="keepDetailsModal">
-      <KeepDetailsCard/>
+      <KeepDetailsCard  v-if="activeKeep"/>
     </KeepDetailsModal>
   </section>
   <section class="container-fluid d-flex justify-content-center mt-2">
@@ -108,7 +108,8 @@ export default {
             }
           },
           keeps: computed(() => AppState.keeps),
-          account: computed(() => AppState.account)
+          account: computed(() => AppState.account),
+          activeKeep: computed(() => AppState.activeKeep)
         };
     },
     components: { KeepForm, KeepCard, KeepDetailsModal, VaultForm, VaultCard, VaultKeepModal, AccountForm }
