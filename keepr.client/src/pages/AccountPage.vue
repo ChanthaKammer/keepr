@@ -90,7 +90,12 @@ import AccountForm from '../components/AccountForm.vue.js';
       </div>
     </div>
 </section>
-
+<Modal id="createKeepModal">
+   <KeepForm/>
+</Modal>
+<Modal id="createVaultModal">
+   <VaultForm/>
+</Modal>
 </template>
 
 <script>
