@@ -5,10 +5,10 @@
          src="../assets/img/macaroni2.png" class="img-fluid object-fit-cover elevation-5 rounded-3 w-50"/>
          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end bottom-shadow">
             <div class="d-flex ps-2 text-white f-roboto fs-1 justify-content-center">
-               <h1 class="p-0">Vault</h1>
-               <i class="mdi mdi-lock-outline pb-2"></i>
+               <h1 class="p-0">{{activeVault?.name}}</h1>
+               <i class="mdi mdi-lock-outline pb-2" v-if="activeVault?.isPrivate"></i>
             </div>
-            <h2 class="d-flex justify-content-center">by chantha kammer</h2>
+            <h2 class="d-flex justify-content-center">by {{ activeVault?.creator?.name }}</h2>
          </div>
       </div>
       <h1 class="text-center">5 Keeps</h1>
@@ -27,7 +27,7 @@
          <h2>5 Vaults | 5 Keeps</h2>
       </div>
    </section> -->
-   <section class="container-fluid p-0">
+   <!-- <section class="container-fluid p-0">
       <h1 class="f-inter">Vaults</h1>
       <div class="row">
          <VaultCard/>
@@ -35,8 +35,8 @@
          <VaultCard/>
          <VaultCard/>
       </div>
-   </section>
-   <h1 class="f-roboto">Roboto</h1>
+   </section> -->
+   <!-- <h1 class="f-roboto">Roboto</h1>
    <section class="container-fluid d-flex justify-content-center mt-2">
       <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#createKeepModal" aria-controls="createKeepModal">
          Create Keep
@@ -52,15 +52,15 @@
       <Modal id="createVaultModal">
          <VaultForm/>
       </Modal>
-   </section>
-   <section class="container-fluid d-flex justify-content-center mt-2">
+   </section> -->
+   <!-- <section class="container-fluid d-flex justify-content-center mt-2">
       <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" aria-controls="keepDetailsModal">
          Keep Details
       </button>
       <KeepDetailsModal id="keepDetailsModal">
          <KeepDetailsCard/>
       </KeepDetailsModal>
-   </section>
+   </section> -->
    <section class="container-fluid d-flex justify-content-center mt-2">
       <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal" aria-controls="vaultKeepDetailsModal">
          Vault Keep Details
@@ -79,7 +79,7 @@
    </section>
    <section class="container-fluid">
       <div class="row">
-         <div class="col-md-3" v-for="k in keeps" :key="k.id">
+         <div class="col-md-3" v-for="k in activeVaultKeeps" :key="k.id">
             <KeepCard :keep="k"/>
          </div>
       </div>
@@ -88,20 +88,48 @@
    </template>
    
    <script>
-   import { AppState } from '../AppState.js';
-   import AccountForm from '../components/AccountForm.vue';
-   import KeepForm from '../components/KeepForm.vue';
-   import KeepCard from '../components/KeepCard.vue';
-   import KeepDetailsCard from '../components/KeepDetailsCard.vue';
-   import KeepDetailsModal from '../components/KeepDetailsModal.vue'
-   import VaultForm from '../components/VaultForm.vue';
-   import VaultCard from '../components/VaultCard.vue'
-   import VaultKeepModal from '../components/VaultKeepModal.vue';
-   import { computed } from 'vue';
+import { AppState } from '../AppState.js';
+import AccountForm from '../components/AccountForm.vue';
+import KeepForm from '../components/KeepForm.vue';
+import KeepCard from '../components/KeepCard.vue';
+import KeepDetailsCard from '../components/KeepDetailsCard.vue';
+import KeepDetailsModal from '../components/KeepDetailsModal.vue'
+import VaultForm from '../components/VaultForm.vue';
+import VaultCard from '../components/VaultCard.vue'
+import VaultKeepModal from '../components/VaultKeepModal.vue';
+import VaultKeepCard from '../components/VaultKeepCard.vue';
+import { vaultsService } from '../services/VaultsService.js';
+import { computed, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { vaultKeepService } from '../services/VaultKeepService.js';
    export default {
       setup() {
+         const route = useRoute();
+         async function getVaultById(){
+            try{
+               await vaultsService.getVaultById(route.params.id);
+            } catch (e){
+               logger.log(e)
+               Pop.error(e)
+            }
+         }
+         async function getVaultKeeps(){
+            try{
+               await vaultsService.getVaultKeeps(route.params.id);
+            } catch(e){
+               logger.log(e)
+               Pop.error(e)
+            }
+         }
+         onMounted(() => {
+            getVaultById()
+            getVaultKeeps()
+         })
          return {
-            keeps: computed(() => AppState.keeps)
+            activeVault: computed(() => AppState.activeVault),
+            activeVaultKeeps: computed(() => AppState.activeVaultKeeps)
          };
       },
       components: { KeepForm, KeepCard, KeepDetailsModal,  VaultForm, VaultCard, VaultKeepModal, AccountForm }

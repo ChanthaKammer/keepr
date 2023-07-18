@@ -1,4 +1,4 @@
-class VaultKeep{
+export class VaultKeep{
    constructor(data){
       this.Id = data.Id;
       this.creatorId = data.creatorId;

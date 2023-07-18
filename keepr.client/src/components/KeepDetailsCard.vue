@@ -24,17 +24,17 @@
                      <div class="row">
                         <div class="col-6">
                               <div class="d-flex mb-3">
-                                 <select class="form-select" aria-label="Type Selection" placeholder="">
+                                 <select class="form-select" aria-label="Type Selection" placeholder="" v-model="selectedVault.vaultId">
                                           <option selected>Select Vault</option>
-                                          <option v-for="v in myVaults" :key="v">{{ v.name }}</option>
+                                          <option v-for="v in myVaults" :key="v.id" :value="v.id">{{ v.name }}</option>
                                  </select>
-                                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Save</button>
+                                 <button @click="createVaultKeep(activeKeep.id)" type="button" class="btn btn-success" data-bs-dismiss="modal">Save</button>
                               </div>
                         </div>
                         <div class="col-6 d-flex" v-if="activeKeep?.creator">
                            <h4>{{ activeKeep.creator?.name }}</h4>
                            <RouterLink :to="{ name: 'Profile', params: {id: activeKeep?.creatorId}}">
-                              <img class="img-fluid object-fit-cover w-25" :src="activeKeep.creator?.picture" alt="" data-bs-toggle="modal" @click="setActiveProfile(activeKeep.creatorId)">
+                              <img class="img-fluid object-fit-cover w-25" :src="activeKeep.creator?.picture" alt="" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveProfile(activeKeep.creatorId)">
                            </RouterLink>
                         </div>
                      </div>
@@ -51,12 +51,14 @@
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { profileService } from '../services/ProfileService.js';
 import { accountService } from '../services/AccountService.js';
 import { keepsService } from '../services/KeepsService.js';
+import { vaultKeepService } from '../services/VaultKeepService.js';
    export default {
       setup(){
+         const selectedVault = ref({});
          async function getAccountVaults(){
             try{
                await accountService.getAccountVaults();
@@ -70,7 +72,7 @@ import { keepsService } from '../services/KeepsService.js';
          return {
             async setActiveProfile(profileId){
                try{
-                  await accountService.getProfileById(profileId);
+                  await profileService.getProfileById(profileId);
                } catch (e){
                   logger.log(e)
                   Pop.error(e)
@@ -85,6 +87,16 @@ import { keepsService } from '../services/KeepsService.js';
                   Pop.error(e)
                }
             },
+            async createVaultKeep(keepId){
+               // logger.log(selectedVault.value.vaultId, keepId)
+               try{
+                  await vaultKeepService.createVaultKeep(selectedVault.value.vaultId, keepId)
+               } catch (e){
+                  logger.log(e)
+                  Pop.error(e)
+               }
+            },
+            selectedVault,
             fakeVaults: computed(() => AppState.fakeVaults),
             myVaults: computed(() => AppState.myVaults),
             activeKeep: computed(() => AppState.activeKeep),

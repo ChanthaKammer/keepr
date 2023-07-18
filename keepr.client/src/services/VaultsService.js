@@ -2,11 +2,15 @@ import { AppState } from "../AppState.js";
 import { logger } from "../utils/Logger.js";
 import { api } from "./AxiosService.js";
 import { Vault } from "../models/Vault.js";
+import { VaultKeep } from "../models/VaultKeep.js"
+import { Keep } from "../models/Keep.js";
 
 class VaultsService{
 
    async getVaultById(vaultId){
       const res = await api.get('/api/vaults/' + vaultId);
+      AppState.activeVault = new Vault(res.data);
+      // logger.log(AppState.activeVault);
    }
    async getAllVaults(){
       const res = await api.get('api/vaults');
@@ -25,6 +29,9 @@ class VaultsService{
 
    async getVaultKeeps(vaultId){
       const res = await api.get('api/vaults/'+ vaultId + '/keeps')
+      logger.log(res.data)
+      AppState.activeVaultKeeps = res.data.map(k => new Keep(k));
+      logger.log(AppState.activeVaultKeeps)
    }
 
    async createVault(vaultData){

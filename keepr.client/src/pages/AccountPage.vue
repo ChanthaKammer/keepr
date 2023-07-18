@@ -21,10 +21,19 @@ import AccountForm from '../components/AccountForm.vue.js';
     </div>
     <div class="row text-center">
       <h1>Chantha Kammer</h1>
-      <h2>5 Vaults | 5 Keeps</h2>
+      <h2>{{myVaults.length}} | {{ accountKeeps.length }}</h2>
     </div>
 </section>
+<section class="container-fluid d-flex justify-content-center mt-2">
+    <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#accountModal" aria-controls="accountModal">
+      Edit Account
+    </button>
+    <Modal id="accountModal">
+      <AccountForm/>
+    </Modal>
+</section>
 <section class="container-fluid p-0">
+  <h1>Vaults</h1>
     <div class="row">
           <div class="col-md-4" v-for="v in myVaults" :key="v.id">
             <RouterLink :to="{name: 'Vault', params: {id: v.id}}">
@@ -40,8 +49,8 @@ import AccountForm from '../components/AccountForm.vue.js';
     <Modal id="createKeepModal">
       <KeepForm/>
     </Modal>
-</section>
-<section class="container-fluid d-flex justify-content-center mt-2">
+</section> -->
+<!-- <section class="container-fluid d-flex justify-content-center mt-2">
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#createVaultModal" aria-controls="createVaultModal">
       Create Vault
     </button>
@@ -65,15 +74,16 @@ import AccountForm from '../components/AccountForm.vue.js';
       <VaultKeepModal/>
     </KeepDetailsModal>
 </section>
-<section class="container-fluid d-flex justify-content-center mt-2">
+<!-- <section class="container-fluid d-flex justify-content-center mt-2">
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#accountModal" aria-controls="accountModal">
       Edit Account
     </button>
     <Modal id="accountModal">
       <AccountForm/>
     </Modal>
-</section>
+</section> -->
 <section class="container-fluid">
+  <h1>Keeps</h1>
     <div class="masonry-with-columns">
       <div class="masonry-item" v-for="k in accountKeeps" :key="k.id">
           <KeepCard :keep="k" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveKeep(k.id)"/>
@@ -162,7 +172,7 @@ export default {
     font-size: 2rem;
 } 
 *{
-    border: 1px solid green;
+    border: 0px solid green;
 }
 .profile-coverImg{
     width: 100%;

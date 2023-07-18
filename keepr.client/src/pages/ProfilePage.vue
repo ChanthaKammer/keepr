@@ -12,19 +12,20 @@ import AccountForm from '../components/AccountForm.vue.js';
 </div> -->
 <section class="container-fluid">
    <div class="position-relative d-flex flex-row justify-content-center">
-      <div class="col-md-7 rounded pt-3">
-         <img src="../assets/img/macaroni.png" alt="" class="img-fluid object-fit-cover profile-coverImg rounded-3">
-         <img src="../assets/img/holyc.png" alt="" class="img-fluid object-fit-cover profile-picture rounded-circle position-absolute">
+      <div class="col-md-7 rounded mt-3">
+         <img :src="activeProfile.coverImg" alt="" class="img-fluid object-fit-cover profile-coverImg rounded-3">
+         <img :src="activeProfile.picture" alt="" class="img-fluid object-fit-cover profile-picture rounded-circle position-absolute">
       </div>
       <!-- <div class="text-center">
       </div> -->
    </div>
-   <div class="row text-center">
-      <h1>Chantha Kammer</h1>
-      <h2>5 Vaults | 5 Keeps</h2>
+   <div class="row text-center p-3 f-roboto text-white">
+      <h1>{{ activeProfile.name }}</h1>
+      <h2>{{ activeProfileVaults.length }} Vaults | {{activeProfileKeeps.length}} Keeps</h2>
    </div>
 </section>
-<section class="container-fluid p-0">
+<section class="container-fluid p-3">
+   <h1 class="f-inter">Vaults</h1>
    <div class="row">
          <div class="col-md-4" v-for="v in activeProfileVaults" :key="v.id">
             <RouterLink :to="{name: 'Vault', params: {id: v.id}}">
@@ -74,6 +75,7 @@ import AccountForm from '../components/AccountForm.vue.js';
    </Modal>
 </section>
 <section class="container-fluid">
+   <h1>Keeps</h1>
    <div class="masonry-with-columns">
       <div class="masonry-item" v-for="k in activeProfileKeeps" :key="k.id">
          <KeepCard :keep="k" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveKeep(k.id)"/>
@@ -103,6 +105,13 @@ import { useRoute } from 'vue-router';
 export default {
    setup() {
       const route = useRoute();
+      async function getProfile(){
+         try{
+            await profileService.getProfileById(route.params.id)
+         } catch (e){
+            logger.log(e)
+         }
+      }
       async function getProfileKeeps(){
          try{
             await profileService.getProfileKeeps(route.params.id)
@@ -118,6 +127,7 @@ export default {
          }
       }
       onMounted(() => {
+         getProfile()
          getProfileKeeps()
          getProfileVaults()
       })

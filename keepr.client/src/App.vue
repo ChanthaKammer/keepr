@@ -5,8 +5,8 @@
   <main>
     <router-view />
   </main>
-   <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
+  <footer class="bg-dark text-light">
+    Made by Chantha 🫡
   </footer>
 </template>
 
@@ -33,7 +33,8 @@ export default {
     })
 
     return {
-      appState: computed(() => AppState)
+      appState: computed(() => AppState),
+      account: computed(() => AppState.account)
     }
   },
   components: { Navbar }
@@ -42,6 +43,9 @@ export default {
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
+main{
+  background-color: rgb(21, 21, 21);
+}
 :root{
   --main-height: calc(100vh - 32px - 64px);
 }

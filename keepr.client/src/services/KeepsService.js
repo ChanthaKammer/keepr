@@ -9,20 +9,20 @@ class KeepsService{
    async getAllKeeps(){
       const res = await api.get('api/keeps');
       AppState.keeps = res.data.map(k => new Keep(k));
-      logger.log("Res.Data Keeps", res.data);
-      logger.log("AppState Keeps",AppState.keeps);
+      // logger.log("Res.Data Keeps", res.data);
+      // logger.log("AppState Keeps",AppState.keeps);
    }
    async createKeep(keepData){
       const res = await api.post('api/keeps', keepData);
       AppState.keeps.push(new Keep(res.data));
-      logger.log("Creating keep", keepData);
+      // logger.log("Creating keep", keepData);
    }
 
    
    async getKeepById(keepId){
       const res = await api.get('api/keeps/' + keepId);
       AppState.activeKeep = new Keep(res.data);
-      logger.log(AppState.activeKeep);
+      // logger.log(AppState.activeKeep);
    }
 
    async editKeep(keepId, keepData){

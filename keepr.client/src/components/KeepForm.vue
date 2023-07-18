@@ -31,14 +31,6 @@ import { keepsService} from '../services/KeepsService.js'
 import {ref} from 'vue';
    export default {
       setup(){
-         async function getMyVaults(){
-            try{
-               await vault
-            } catch (e){
-               Pop.error(e)
-               logger.log(e)
-            }
-         }
          const editable = ref({});
          return {
             editable,
