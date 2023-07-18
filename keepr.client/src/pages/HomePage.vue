@@ -10,56 +10,56 @@ import VaultForm from '../components/VaultForm.vue.js';
 import AccountForm from '../components/AccountForm.vue.js';
     </div>
   </div> -->
-  <h1 class="f-inter">Inter</h1>
-  <h1 class="f-roboto">Roboto</h1>
+  <!-- <h1 class="f-inter">Inter</h1>
+  <h1 class="f-roboto">Roboto</h1> -->
   <!-- <router-link class="navbar-brand d-flex justify-content-center">
     <button class="btn btn-secondary" type="button" >
       Profile Page
     </button>
   </router-link> -->
-  <section class="container-fluid d-flex justify-content-center mt-2">
+  <!-- <section class="container-fluid d-flex justify-content-center mt-2">
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#createKeepModal" aria-controls="createKeepModal">
       Create Keep
     </button>
-    <Modal id="createKeepModal">
-      <KeepForm/>
-    </Modal>
-  </section>
-  <section class="container-fluid d-flex justify-content-center mt-2">
+  </section> -->
+  <Modal id="createKeepModal">
+    <KeepForm/>
+  </Modal>
+  <!-- <section class="container-fluid d-flex justify-content-center mt-2">
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#createVaultModal" aria-controls="createVaultModal">
       Create Vault
     </button>
-    <Modal id="createVaultModal">
-      <VaultForm/>
-    </Modal>
-  </section>
-  <section class="container-fluid d-flex justify-content-center mt-2">
+  </section> -->
+  <Modal id="createVaultModal">
+    <VaultForm/>
+  </Modal>
+  <!-- <section class="container-fluid d-flex justify-content-center mt-2">
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" aria-controls="keepDetailsModal">
       Keep Details
     </button>
-    <KeepDetailsModal id="keepDetailsModal">
-      <KeepDetailsCard  v-if="activeKeep"/>
-    </KeepDetailsModal>
-  </section>
-  <section class="container-fluid d-flex justify-content-center mt-2">
+  </section> -->
+  <KeepDetailsModal id="keepDetailsModal">
+    <KeepDetailsCard  v-if="activeKeep"/>
+  </KeepDetailsModal>
+  <!-- <section class="container-fluid d-flex justify-content-center mt-2">
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal" aria-controls="vaultKeepDetailsModal">
       Vault Keep Details
     </button>
-    <KeepDetailsModal id="vaultKeepDetailsModal">
-      <VaultKeepModal/>
-    </KeepDetailsModal>
-  </section>
-  <section class="container-fluid d-flex justify-content-center mt-2">
+  </section> -->
+  <KeepDetailsModal id="vaultKeepDetailsModal">
+    <VaultKeepModal/>
+  </KeepDetailsModal>
+  <!-- <section class="container-fluid d-flex justify-content-center mt-2">
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#accountModal" aria-controls="accountModal">
       Edit Account
     </button>
     <Modal id="accountModal">
       <AccountForm/>
     </Modal>
-  </section>
+  </section> -->
   <section class="container-fluid">
     <div class="masonry-with-columns" data-masonry='{"percentPosition": true }'>
-      <div class="masonry-item" v-for="k in keeps" :key="k.id">
+      <div class="masonry-item animate__animated animate__slideInUp animate__fast" v-for="k in keeps" :key="k.id">
         <KeepCard :keep="k" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveKeep(k.id)"/>
       </div>
     </div>

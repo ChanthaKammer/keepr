@@ -3,7 +3,7 @@
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-row align-items-center">
         <!-- <img alt="logo" src="../assets/img/cw-logo.png" height="45" /> -->
-        <h1 class="f-inter fs-1">Home</h1>
+        <h1 class="f-inter fs-1">Keep<span class="f-roboto fs-1">R</span></h1>
         <div class="dropdown ps-3">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown button
@@ -39,6 +39,15 @@ export default {
 </script>
 
 <style scoped>
+.f-inter{
+  font-family: 'Inter', sans-serif;
+  color: rgb(255, 255, 255);
+}
+
+.f-roboto{
+  font-family: 'Roboto Slab', serif;
+  color: rgb(187, 255, 0);
+}
 a:hover {
   text-decoration: none;
 }

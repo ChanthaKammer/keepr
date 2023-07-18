@@ -38,7 +38,7 @@ import { Keep } from '../models/Keep.js';
 
 .f-inter{
 font-family: 'Inter', sans-serif;
-color: rgb(76, 160, 202);
+color: rgb(255, 255, 255);
 }
 
 </style>

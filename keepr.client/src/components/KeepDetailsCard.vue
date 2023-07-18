@@ -1,23 +1,23 @@
 <template>
-   <div class="container-fluid bg-dark">
+   <div class="bg-dark">
       <div class="modal-content" >
-      <div class="modal-body container-fluid p-0">
+      <div class="modal-body p-0">
          <section class="row">
             <div class="col-md-6 col-12">
-               <img class="img-fluid object-fit-cover"
+               <img class="img-fluid object-fit-cover h-100 w-100 rounded-3 rounded-start"
                      :src="activeKeep?.img"
                      alt="">
             </div>
             <div class="col-md-6 col-12 p-2">
                <div class="row h-100 justify-content-between">
-                  <div class="col-12">
-                     <i class="mdi mdi-eye-outline fs-1">{{ activeKeep?.views }}</i>
-                     <i class="mdi mdi-bank fs-1">{{ activeKeep?.kept }}</i>
-                     <button class="btn btn-danger" v-if="activeKeep?.creatorId == account.id" @click="deleteKeep(activeKeep.id)" data-bs-dismiss="modal">Delete</button>
+                  <i class="mdi mdi-trash-can-outline btn-danger text-end pe-4 fs-3" v-if="activeKeep?.creatorId == account.id" @click="deleteKeep(activeKeep.id)" data-bs-dismiss="modal"></i>
+                  <div class="d-flex justify-content-center col-12 text-center gap-5">
+                     <i class="mdi mdi-eye-outline fs-4"> {{ activeKeep?.views }} </i>
+                     <i class="mdi mdi-bank fs-4"> {{ activeKeep?.kept }} </i>
                   </div>
                   <div class="col-12">
                      <h1 class="text-center f-inter">{{ activeKeep?.name }}</h1>
-                     <h2>{{ activeKeep?.description }}</h2>
+                     <h4>{{ activeKeep?.description }}</h4>
                      <!-- <p>{{ activeKeep.creator }}</p> -->
                   </div>
                   <div class="col-12">
@@ -31,10 +31,10 @@
                                  <button @click="createVaultKeep(activeKeep.id)" type="button" class="btn btn-success" data-bs-dismiss="modal">Save</button>
                               </div>
                         </div>
-                        <div class="col-6 d-flex" v-if="activeKeep?.creator">
+                        <div class="col-6 d-flex p-3" v-if="activeKeep?.creator">
                            <h4>{{ activeKeep.creator?.name }}</h4>
                            <RouterLink :to="{ name: 'Profile', params: {id: activeKeep?.creatorId}}">
-                              <img class="img-fluid object-fit-cover w-25" :src="activeKeep.creator?.picture" alt="" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveProfile(activeKeep.creatorId)">
+                              <img class="img-fluid object-fit-cover rounded-circle" :src="activeKeep.creator?.picture" alt="" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveProfile(activeKeep.creatorId)">
                            </RouterLink>
                         </div>
                      </div>

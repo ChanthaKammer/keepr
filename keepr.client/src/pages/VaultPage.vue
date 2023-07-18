@@ -80,7 +80,7 @@
    <section class="container-fluid">
       <div class="row">
          <div class="col-md-3" v-for="k in activeVaultKeeps" :key="k.id">
-            <KeepCard :keep="k"/>
+            <KeepCard :keep="k" data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal"/>
          </div>
       </div>
    </section>
