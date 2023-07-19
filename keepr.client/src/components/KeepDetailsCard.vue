@@ -34,7 +34,7 @@
                         <div class="col-6 d-flex p-3" v-if="activeKeep?.creator">
                            <h4>{{ activeKeep.creator?.name }}</h4>
                            <RouterLink :to="{ name: 'Profile', params: {id: activeKeep?.creatorId}}">
-                              <img class="img-fluid object-fit-cover rounded-circle" :src="activeKeep.creator?.picture" alt="" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveProfile(activeKeep.creatorId)">
+                              <img class="img-fluid object-fit-cover rounded-circle profile-picture-small" :src="activeKeep.creator?.picture" alt="" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveProfile(activeKeep.creatorId)">
                            </RouterLink>
                         </div>
                      </div>
@@ -111,6 +111,9 @@ import { vaultKeepService } from '../services/VaultKeepService.js';
 
 
 <style scoped lang="scss">
+.profile-picture-small{
+   aspect-ratio: 1/1;
+}
    * {
       border: 0px solid green
    }

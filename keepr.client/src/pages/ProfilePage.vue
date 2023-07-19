@@ -158,6 +158,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.profile-picture{
+   aspect-ratio: 1/1;
+}
 .masonry-with-columns {
    columns: 4 300px;
    column-gap: 1rem;
@@ -167,7 +170,12 @@ export default {
    columns: 2 ;
    column-gap: 1rem;
    }
+   .profile-picture{
+      right: -20px;
+      top: 50px;
    }
+   }
+
 .masonry-item {
    width: 150px;
    // background: #EC985A;

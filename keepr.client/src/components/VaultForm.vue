@@ -3,7 +3,7 @@
       <div class="modal-body ">
          <div class="container-fluid">
             <div class="form-floating mb-3">
-               <input type="text" class="form-control" id="keepName" aria-describedby="keepName" v-model="editable.name">
+               <input type="text" class="form-control" id="vaultName" aria-describedby="vaultName" v-model="editable.name">
                <label for="vaultName" class="form-label">Add Your Vault</label>
             </div>
             <div class="form-floating mb-3">

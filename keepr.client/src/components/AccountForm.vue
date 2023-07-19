@@ -15,7 +15,7 @@
                <label for="accountCoverImage" class="form-label">Cover Image</label>
             </div>
             <div class="d-flex justify-content-end gap-2">
-               <button type="submit" class="btn btn-primary">Submit</button>
+               <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button>
                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
          </div>
@@ -28,10 +28,13 @@ import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
 import { accountService } from '../services/AccountService.js';
-import {ref, computed} from 'vue';
+import {ref, computed, watchEffect} from 'vue';
    export default {
       setup(){
          const editable = ref({});
+         watchEffect(() => {
+         editable.value = { ...AppState.account }
+         })
          return {
             editable,
             async editAccount(){
