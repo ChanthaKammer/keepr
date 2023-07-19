@@ -8,16 +8,16 @@
                <h1 class="p-0 f-inter">{{activeVault?.name}}</h1>
                <i class="mdi mdi-lock-outline pb-2" v-if="activeVault?.isPrivate"></i>
             </div>
-            <h2 class="d-flex justify-content-center">by {{ activeVault?.creator?.name }}</h2>
+            <h2 class="d-flex justify-content-center text-white">by {{ activeVault?.creator?.name }}</h2>
          </div>
       </div>
       <div class="row justify-content-end align-items-center">
          <div class="col-4">
             <h1 class="text-center f-roboto pt-3">{{ activeVaultKeeps.length }} Keeps</h1>
          </div>
-         <div class="col-4">
+         <div class="col-4 text-white fs-3">
             <!-- <i class="mdi mdi-trash-can-outline fs-2" v-if="activeVault?.creator?.id == account?.id" @click="deleteVault(activeVault?.id)"></i> -->
-            <i class="mdi mdi-dots-horizontal nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="mdi mdi-dots-horizontal dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
          </i>
          <ul class="dropdown-menu">
             <li><a class="dropdown-item" @click="deleteVault(activeVault?.id)">Delete Vault</a></li>

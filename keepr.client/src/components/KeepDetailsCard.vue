@@ -1,6 +1,6 @@
 <template>
    <div class="bg-dark">
-      <div class="modal-content" >
+      <div class="modal-content bg-dark" >
       <div class="modal-body p-0">
          <section class="row">
             <div class="col-md-6 col-12">
@@ -17,7 +17,7 @@
                   </div>
                   <div class="col-12">
                      <h1 class="text-center f-roboto">{{ activeKeep?.name }}</h1>
-                     <p class="f-inter">{{ activeKeep?.description }}</p>
+                     <p class="f-inter pe-3">{{ activeKeep?.description }}</p>
                      <!-- <p>{{ activeKeep.creator }}</p> -->
                   </div>
                   <div class="col-12">
