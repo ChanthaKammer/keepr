@@ -123,6 +123,12 @@ body {
   columns: 4 300px;
   column-gap: 1rem;
 }
+@media (max-width: 575.98px) { 
+  .masonry-with-columns {
+  columns: 2 ;
+  column-gap: 1rem;
+}
+}
 .masonry-item {
   width: 150px;
   // background: #EC985A;

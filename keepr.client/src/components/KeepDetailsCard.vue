@@ -8,7 +8,7 @@
                      :src="activeKeep?.img"
                      alt="">
             </div>
-            <div class="col-md-6 col-12 p-2">
+            <div class="col-md-6 col-12 p-4">
                <div class="row h-100 justify-content-between">
                   <i class="mdi mdi-trash-can-outline btn-danger text-end pe-4 fs-3" v-if="activeKeep?.creatorId == account.id" @click="deleteKeep(activeKeep.id)" data-bs-dismiss="modal"></i>
                   <div class="d-flex justify-content-center col-12 text-center gap-5">

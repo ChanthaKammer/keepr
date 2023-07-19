@@ -4,9 +4,12 @@ public class VaultKeepService{
    private readonly VaultKeepsRepository  _repo;
    private readonly VaultService _vaultService;
 
-   public VaultKeepService(VaultKeepsRepository repo, VaultService vaultService){
+   private readonly KeepService _keepService;
+
+   public VaultKeepService(VaultKeepsRepository repo, VaultService vaultService, KeepService keepService){
       _repo = repo;
       _vaultService = vaultService;
+      _keepService = keepService;
    }
 
    internal VaultKeep getById(int vaultKeepId){
@@ -24,6 +27,9 @@ public class VaultKeepService{
          throw new Exception("You are not allowed to create a vaultkeep in this vault");
       }
       VaultKeep vaultKeep = _repo.createVaultKeep(vaultKeepData);
+      // Keep keep = _keepService.getById(vaultKeep.KeepId);
+      // keep.Kept++;
+      // _keepService.updateKeep(keep, userId);
       return vaultKeep;
    }
 

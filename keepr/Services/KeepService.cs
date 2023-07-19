@@ -33,6 +33,7 @@ public class KeepService{
       original.Name = updateData.Name != null ? updateData.Name : original.Name;
       original.Description = updateData.Description != null ? updateData.Description : original.Description;
       original.Img = updateData.Img != null ? updateData.Img : original.Img;
+      original.Kept = updateData.Kept != null ? updateData.Kept : original.Kept;
       if(original.Views > 0){
          original.Views--;
       } 

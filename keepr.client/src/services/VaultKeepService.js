@@ -11,7 +11,10 @@ class VaultKeepService{
          "vaultId": vaultId,
          "keepId": keepId
       })
-      logger.log(res.data)
+      // const keep = AppState.keeps.find(k => k.id == keepId);
+      // logger.log(keep)
+      // keep.kept++;
+      // logger.log(res.data)
    }
    async deleteVaultKeep(vaultKeepId){
       // const res = await api.delete('api/vaultkeeps/' + vaultKeepId);
