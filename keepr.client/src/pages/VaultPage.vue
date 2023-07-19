@@ -5,7 +5,7 @@
          :src="activeVault?.img" class="img-fluid object-fit-cover elevation-5 rounded-3 w-50"/>
          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end bottom-shadow">
             <div class="d-flex ps-2 text-white f-roboto fs-1 justify-content-center">
-               <h1 class="p-0">{{activeVault?.name}}</h1>
+               <h1 class="p-0 f-inter">{{activeVault?.name}}</h1>
                <i class="mdi mdi-lock-outline pb-2" v-if="activeVault?.isPrivate"></i>
             </div>
             <h2 class="d-flex justify-content-center">by {{ activeVault?.creator?.name }}</h2>

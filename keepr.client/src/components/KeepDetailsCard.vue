@@ -4,25 +4,25 @@
       <div class="modal-body p-0">
          <section class="row">
             <div class="col-md-6 col-12">
-               <img class="img-fluid object-fit-cover h-100 w-100 rounded-3 rounded-start"
+               <img class="img-fluid object-fit-cover h-100 w-100 rounded-start"
                      :src="activeKeep?.img" :title="activeKeep?.name"
                      alt="">
             </div>
-            <div class="col-md-6 col-12 p-4">
+            <div class="col-md-6 col-12 p-2">
                <div class="row h-100 justify-content-between">
                   <i class="mdi mdi-trash-can-outline btn-danger text-end pe-4 fs-3" v-if="activeKeep?.creatorId == account.id" @click="deleteKeep(activeKeep.id)" data-bs-dismiss="modal"></i>
-                  <div class="d-flex justify-content-center col-12 text-center gap-5">
-                     <i class="mdi mdi-eye-outline fs-4"> {{ activeKeep?.views }} </i>
-                     <i class="mdi mdi-bank fs-4"> {{ activeKeep?.kept }} </i>
+                  <div class="d-flex justify-content-center text-center gap-5">
+                     <i class="mdi mdi-eye-outline fs-4"> <span class="f-roboto text-white">{{ activeKeep?.views }} </span></i>
+                     <i class="mdi mdi-bank fs-4"> <span class="f-roboto text-white">{{ activeKeep?.kept }}</span></i>
                   </div>
                   <div class="col-12">
-                     <h1 class="text-center f-inter">{{ activeKeep?.name }}</h1>
-                     <h4>{{ activeKeep?.description }}</h4>
+                     <h1 class="text-center f-roboto">{{ activeKeep?.name }}</h1>
+                     <p class="f-inter">{{ activeKeep?.description }}</p>
                      <!-- <p>{{ activeKeep.creator }}</p> -->
                   </div>
                   <div class="col-12">
                      <div class="row">
-                        <div class="col-6">
+                        <div class="d-flex col-6 align-items-end">
                               <div class="d-flex mb-3">
                                  <select class="form-select" aria-label="Type Selection" placeholder="" v-model="selectedVault.vaultId">
                                           <option selected>Select Vault</option>
@@ -31,10 +31,10 @@
                                  <button @click="createVaultKeep(activeKeep.id)" type="button" class="btn btn-success" data-bs-dismiss="modal">Save</button>
                               </div>
                         </div>
-                        <div class="col-6 d-flex p-3" v-if="activeKeep?.creator">
-                           <h4>{{ activeKeep.creator?.name }}</h4>
+                        <div class="col-6 d-flex p-3 align-items-end" v-if="activeKeep?.creator">
+                           <h4 class="f-roboto text-white">{{ activeKeep.creator?.name }}</h4>
                            <RouterLink :to="{ name: 'Profile', params: {id: activeKeep?.creatorId}}">
-                              <img class="img-fluid object-fit-cover rounded-circle profile-picture-small" :src="activeKeep.creator?.picture" alt="" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveProfile(activeKeep.creatorId)">
+                              <img class="img-fluid object-fit-cover rounded-circle profile-picture-small p-2" :src="activeKeep.creator?.picture" alt="" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveProfile(activeKeep.creatorId)">
                            </RouterLink>
                         </div>
                      </div>
@@ -111,7 +111,20 @@ import { vaultKeepService } from '../services/VaultKeepService.js';
 
 
 <style scoped lang="scss">
+.f-flow{
+font-family: 'Flow Circular', cursive;
+}
+.f-inter{
+font-family: 'Inter', sans-serif;
+color: rgb(76, 160, 202);
+}
+
+.f-roboto{
+font-family: 'Roboto Slab', serif;
+color: rgb(47, 171, 216);
+}
 .profile-picture-small{
+   height:4rem;
    aspect-ratio: 1/1;
 }
    * {
