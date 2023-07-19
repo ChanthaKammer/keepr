@@ -9,11 +9,14 @@ public class KeepsRepository{
 
    internal List<Keep> getAllKeeps(){
       string sql =@"
-      SELECT keep.*,
+      SELECT 
+      keep.*,
+      COUNT(vk.keepId) AS kept,
       creator.*
-
       FROM keeps keep
-      JOIN accounts creator on keep.creatorId = creator.id";
+      LEFT JOIN vaultkeeps vk ON vk.KeepId = keep.id
+      JOIN accounts creator on keep.creatorId = creator.id
+      GROUP BY (keep.Id);";
       List<Keep> keeps = _db.Query<Keep, Account, Keep>
       (sql, (keep, creator) => {
             keep.Creator = creator;
@@ -59,12 +62,15 @@ public class KeepsRepository{
 
    internal Keep getById(int keepId){
       string sql = @"
-      SELECT keep.*,
+      SELECT 
+      keep.*,
+      COUNT(vk.keepId) AS kept,
       creator.*
-
       FROM keeps keep
+      LEFT JOIN vaultkeeps vk ON vk.KeepId = keep.id
       JOIN accounts creator ON keep.creatorId = creator.Id
-      WHERE keep.id = @keepId;
+      WHERE keep.id = @keepId
+      GROUP BY (keep.Id);
       ";
       Keep keep = _db.Query<Keep, Account, Keep>(sql, (keep, creator) => {
          keep.Creator = creator;
