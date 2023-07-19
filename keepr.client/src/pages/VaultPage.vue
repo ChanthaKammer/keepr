@@ -2,7 +2,7 @@
   <div class="">
       <div class="d-flex flex-row justify-content-center position-relative ">
          <img
-         src="../assets/img/macaroni2.png" class="img-fluid object-fit-cover elevation-5 rounded-3 w-50"/>
+         :src="activeVault?.img" class="img-fluid object-fit-cover elevation-5 rounded-3 w-50"/>
          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end bottom-shadow">
             <div class="d-flex ps-2 text-white f-roboto fs-1 justify-content-center">
                <h1 class="p-0">{{activeVault?.name}}</h1>
@@ -13,10 +13,10 @@
       </div>
       <div class="row justify-content-end align-items-center">
          <div class="col-4">
-            <h1 class="text-center f-roboto pt-3">5 Keeps</h1>
+            <h1 class="text-center f-roboto pt-3">{{ activeVaultKeeps.length }} Keeps</h1>
          </div>
          <div class="col-4">
-            <i class="mdi mdi-trash-can-outline fs-2" v-if="activeVault?.creator?.id == account?.id"></i>
+            <i class="mdi mdi-trash-can-outline fs-2" v-if="activeVault?.creator?.id == account?.id" @click="deleteVault(activeVault?.id)"></i>
          </div>
       </div>
    </div>
@@ -117,6 +117,7 @@ import { useRoute } from 'vue-router';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import { vaultKeepService } from '../services/VaultKeepService.js';
+import { router } from '../router.js';
    export default {
       setup() {
          const route = useRoute();
@@ -124,6 +125,7 @@ import { vaultKeepService } from '../services/VaultKeepService.js';
             try{
                await vaultsService.getVaultById(route.params.id);
             } catch (e){
+               router.push({path: '/#/Home'})
                logger.log(e)
                Pop.error(e)
             }
@@ -141,17 +143,28 @@ import { vaultKeepService } from '../services/VaultKeepService.js';
             getVaultKeeps()
          })
          return {
-            async setActiveKeep(keepId){
+         async setActiveKeep(keepId){
             AppState.activeKeep = {};
             logger.log("Setting active keep", keepId)
             try{
-              await keepsService.getKeepById(keepId);
+               await keepsService.getKeepById(keepId);
             } catch (e){
-              logger.log(e);
-              Pop.error(e);
+               logger.log(e);
+               Pop.error(e);
             }
-          },
+         },
+         async deleteVault(vaultId){
+            try {
+               logger.log("Deleting vault", vaultId);
+               await vaultsService.deleteVault(vaultId);
+               router.push({path: '#'});
+            } catch (e){
+               logger.log(e);
+               Pop.error(e);
+            }
+         },
             activeVault: computed(() => AppState.activeVault),
+            activeKeep: computed(() => AppState.activeKeep),
             activeVaultKeeps: computed(() => AppState.activeVaultKeeps),
             account: computed(() => AppState.account)
          };

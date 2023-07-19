@@ -31,7 +31,7 @@ public class VaultKeepService{
    {
       VaultKeep vaultKeep = getById(vaultKeepId);
       if(vaultKeep.CreatorId != userId){
-         throw new Exception($"You are not allowed to delete VaultKeep: ${vaultKeepId}");
+         throw new Exception($"You are not allowed to delete VaultKeep: {vaultKeepId}");
       }
       int rows = _repo.DeleteVaultKeep(vaultKeepId);
       if(rows > 1) throw new Exception("Too many rows deleted, check db.");

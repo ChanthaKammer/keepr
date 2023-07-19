@@ -17,14 +17,14 @@
                   <div class="col-12">
                      <h1 class="text-center f-inter">{{ activeKeep?.name }}</h1>
                      <h4>{{ activeKeep?.description }}</h4>
-                     <!-- <p>{{ activeKeep.creator }}</p> -->
+                     <p>{{ activeKeep }}</p>
                   </div>
                   <div class="col-12 text-end">
                      <div class="row">
                         <div class="col-6">
                               <div class="d-flex mb-3">
                                  <button data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal">
-                                    <i class="mdi mdi-delete" @click="removeVaultKeep(activeKeep?.id)">Remove</i>
+                                    <i class="mdi mdi-delete" @click="removeVaultKeep(activeKeep?.Id)">Remove</i>
                                  </button>
                               </div>
                         </div>
@@ -51,15 +51,18 @@ import { vaultKeepService } from '../services/VaultKeepService.js';
    export default {
       setup(){
          return {
-            async removeVaultKeep(vaultKeepId){
+            // vaultKeep: AppState.activeVaultKeeps.find(a => a.id == this.activeKeep.id),
+            async removeVaultKeep(keepId){
                try{
-                  await vaultKeepService.deleteVaultKeep(vaultKeepId);
+                  const vaultKeepIndex = AppState.activeVaultKeeps.findIndex(a => a.id == keepId);
+                  await vaultKeepService.deleteVaultKeep(AppState.activeVaultKeeps[vaultKeepIndex].vaultKeepId);
                } catch (e){
                   logger.log(e)
                   Pop.error(e)
                }
             },
             activeKeep: computed(() => AppState.activeKeep),
+            activeVaultKeeps: computed(() => AppState.activeVaultKeeps),
             account: computed(() => AppState.account)
          }
       }

@@ -22,7 +22,7 @@ class KeepsService{
    async getKeepById(keepId){
       const res = await api.get('api/keeps/' + keepId);
       AppState.activeKeep = new Keep(res.data);
-      // logger.log(AppState.activeKeep);
+      logger.log(AppState.activeKeep);
    }
 
    async editKeep(keepId, keepData){

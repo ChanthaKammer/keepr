@@ -6,6 +6,7 @@
          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end">
             <div class="d-flex ps-2 text-white f-roboto fs-1 bottom-shadow justify-content-between">
                <h1 class="p-0">{{vault.name}}</h1>
+               <!-- <p>{{ vault }}</p> -->
                <i class="mdi mdi-lock-outline pb-2" v-if="vault.isPrivate"></i>
             </div>
          </div>

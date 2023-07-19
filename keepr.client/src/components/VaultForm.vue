@@ -14,11 +14,11 @@
                <div>
                   <p>Private vaults can only be seen by you.</p>
                </div>
-               <input class="form-check-input" type="checkbox" value="" id="privateCheckbox">
+               <input class="form-check-input" type="checkbox" id="privateCheckbox" v-model="editable.isPrivate">
                <label class="form-check-label" for="privateCheckbox">
                   Private
                </label>
-               <button type="submit" class="btn btn-primary">Create Vault</button>
+               <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Create Vault</button>
                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
             </div>
          </div>

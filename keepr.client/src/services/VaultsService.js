@@ -24,14 +24,14 @@ class VaultsService{
    }
 
    async deleteVault(vaultId){
-      const res = await api.delete('api/vaults' + vaultId)
+      const res = await api.delete('api/vaults/' + vaultId)
    }
 
    async getVaultKeeps(vaultId){
       const res = await api.get('api/vaults/'+ vaultId + '/keeps')
       logger.log(res.data)
       AppState.activeVaultKeeps = res.data.map(k => new Keep(k));
-      logger.log(AppState.activeVaultKeeps)
+      logger.log("Active Vault Keeps", AppState.activeVaultKeeps)
    }
 
    async createVault(vaultData){

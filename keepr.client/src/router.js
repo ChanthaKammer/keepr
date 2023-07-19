@@ -33,7 +33,7 @@ const routes = [
     path: '/vault/:id',
     name: 'Vault',
     component: loadPage('VaultPage'),
-    beforeEnter: authSettled
+    beforeEnter: authSettled, authGuard
   }
 ]
 

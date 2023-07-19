@@ -1,6 +1,6 @@
 export class VaultKeep{
    constructor(data){
-      this.Id = data.Id;
+      this.vaultKeepId = data.id;
       this.creatorId = data.creatorId;
       this.VaultId = data.VaultId;
       this.Keepid = data.KeepId;

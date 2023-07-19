@@ -6,7 +6,7 @@
          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end">
             <div class="d-flex ps-2 text-white fs-1 bottom-shadow justify-content-between">
                <h1 class="p-0 f-inter">{{keep.name}}</h1>
-               <!-- <i class="mdi mdi-lock-outline pb-2"></i> -->
+               <i class="mdi mdi-lock-outline pb-2"></i>
             </div>
          </div>
       </div>
@@ -20,7 +20,7 @@ import { logger } from '../utils/Logger.js';
 import { Keep } from '../models/Keep.js';
    export default {
       props: {
-         keep: { type: Keep, required: true } 
+         keep: { type: Keep, required: true }
       },
       setup(props){
          return {

@@ -80,8 +80,8 @@ import { vaultKeepService } from '../services/VaultKeepService.js';
             },
             async deleteKeep(keepId){
                try{
-                  // await keepsService.deleteKeep(keepId);
-                  logger.log("deleting keep", keepId)
+                  await keepsService.deleteKeep(keepId);
+                  // logger.log("deleting keep", keepId)
                } catch (e){
                   logger.log(e)
                   Pop.error(e)
