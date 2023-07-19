@@ -171,7 +171,10 @@ import { router } from '../router.js';
          },
          async deleteVault(vaultId){
             try {
-               logger.log("Deleting vault", vaultId);
+               const yes = await Pop.confirm('Delete Vault ?')
+                  if (!yes){ 
+                  return }
+               // logger.log("Deleting vault", vaultId);
                await vaultsService.deleteVault(vaultId);
                router.push({path: '/#/Home'})
             } catch (e){

@@ -80,6 +80,9 @@ import { vaultKeepService } from '../services/VaultKeepService.js';
             },
             async deleteKeep(keepId){
                try{
+                  const yes = await Pop.confirm('Delete Keep ?')
+                  if (!yes){ 
+                  return }
                   await keepsService.deleteKeep(keepId);
                   // logger.log("deleting keep", keepId)
                } catch (e){

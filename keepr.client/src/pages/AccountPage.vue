@@ -21,7 +21,7 @@ import AccountForm from '../components/AccountForm.vue.js';
     </div>
     <div class="row text-center">
       <h1>{{ account.name }}</h1>
-      <h2>{{myVaults.length}} | {{ accountKeeps.length }}</h2>
+      <h2>{{myVaults.length}} Vaults | {{ accountKeeps.length }} Keeps</h2>
     </div>
 </section>
 <section class="container-fluid d-flex justify-content-center mt-2">
@@ -152,7 +152,7 @@ export default {
           },
           // keeps: computed(() => AppState.keeps.find(k => k.CreatorId == account.value.id)),
           myVaults: computed(() => AppState.myVaults),
-          accountKeeps: computed(() => AppState.activeProfileKeeps),
+          accountKeeps: computed(() => AppState.keeps.filter(k => k.CreatorId == account.value.id)),
           account: computed(() => AppState.account)
       };
     },
