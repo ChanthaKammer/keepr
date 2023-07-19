@@ -157,8 +157,9 @@ import { router } from '../router.js';
             try {
                logger.log("Deleting vault", vaultId);
                await vaultsService.deleteVault(vaultId);
-               router.push({path: '#'});
+               router.push({path: '/#/Home'})
             } catch (e){
+               router.push({path: '/#/Home'})
                logger.log(e);
                Pop.error(e);
             }

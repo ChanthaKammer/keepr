@@ -28,7 +28,7 @@ import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
 import { accountService } from '../services/AccountService.js';
-import {ref} from 'vue';
+import {ref, computed} from 'vue';
    export default {
       setup(){
          const editable = ref({});
@@ -36,13 +36,14 @@ import {ref} from 'vue';
             editable,
             async editAccount(){
                try {
-                  logger.log("Editing Account", editable.value)
-                  // await accountService.editAccount(editable.value);
+                  // logger.log("Editing Account", editable.value)
+                  await accountService.editAccount(editable.value);
                } catch (error) {
                   Pop.error(error)
                   logger.log(error)
                }
-            }
+            },
+            account: computed(() => AppState.account)
          }
       }
    }
