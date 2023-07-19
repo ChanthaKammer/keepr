@@ -18,9 +18,16 @@ class VaultsService{
       logger.log("Res.Data Vaults", res.data);
       logger.log("AppState Vaults",AppState.vaults);
    }
-
+   
    async editVault(vaultId, vaultData){
       const res = await api.put('api/vaults/' + vaultId, vaultData)
+   }
+   
+   async togglePrivate(vaultId){
+      // const res = await api.put('api/vaults' + vaultId, {params: {}})
+      const vault = AppState.activeVault;
+      const res = await api.put('api/vaults/' + vaultId, vault)
+      logger.log("toggling private",vault);
    }
 
    async deleteVault(vaultId){

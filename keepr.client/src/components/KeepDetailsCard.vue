@@ -5,7 +5,7 @@
          <section class="row">
             <div class="col-md-6 col-12">
                <img class="img-fluid object-fit-cover h-100 w-100 rounded-3 rounded-start"
-                     :src="activeKeep?.img"
+                     :src="activeKeep?.img" :title="activeKeep?.name"
                      alt="">
             </div>
             <div class="col-md-6 col-12 p-4">

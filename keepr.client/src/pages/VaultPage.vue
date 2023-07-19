@@ -16,7 +16,14 @@
             <h1 class="text-center f-roboto pt-3">{{ activeVaultKeeps.length }} Keeps</h1>
          </div>
          <div class="col-4">
-            <i class="mdi mdi-trash-can-outline fs-2" v-if="activeVault?.creator?.id == account?.id" @click="deleteVault(activeVault?.id)"></i>
+            <!-- <i class="mdi mdi-trash-can-outline fs-2" v-if="activeVault?.creator?.id == account?.id" @click="deleteVault(activeVault?.id)"></i> -->
+            <i class="mdi mdi-dots-horizontal nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          </i>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" @click="deleteVault(activeVault?.id)">Delete Vault</a></li>
+            <li><a class="dropdown-item" v-if="activeVault.isPrivate" @click="togglePrivate(activeVault?.id)">Make Public</a></li>
+            <li><a class="dropdown-item" v-if="!activeVault.isPrivate" @click="togglePrivate(activeVault?.id)">Make Private</a></li>
+          </ul>
          </div>
       </div>
    </div>
@@ -85,9 +92,9 @@
       </Modal>
    </section>
    <section class="container-fluid">
-      <div class="row">
-         <div class="col-md-3 animate__animated animate__slideInUp animate__fast" v-for="k in activeVaultKeeps" :key="k.id">
-            <VaultKeepCard :keep="k" data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal" class="" @click="setActiveKeep(k.id)"/>
+      <div class="masonry-with-columns" data-masonry='{"percentPosition": true }'>
+         <div class="masonry-item animate__animated animate__slideInUp animate__fast" v-for="k in activeVaultKeeps" :key="k.id">
+            <VaultKeepCard :keep="k" :vaultKeepId="k.vaultKeepId" data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal" class="" @click="setActiveKeep(k)"/>
          </div>
       </div>
    </section>
@@ -143,14 +150,23 @@ import { router } from '../router.js';
             getVaultKeeps()
          })
          return {
-         async setActiveKeep(keepId){
-            AppState.activeKeep = {};
-            logger.log("Setting active keep", keepId)
-            try{
-               await keepsService.getKeepById(keepId);
-            } catch (e){
-               logger.log(e);
-               Pop.error(e);
+         async setActiveKeep(k){
+            AppState.activeKeep = k;
+            // logger.log("Setting active keep", keepId)
+            // try{
+            //    await keepsService.getKeepById(k.Id);
+            // } catch (e){
+            //    logger.log(e);
+            //    Pop.error(e);
+            // }
+         },
+         async togglePrivate(vaultId){
+            try {
+               AppState.activeVault.isPrivate = !AppState.activeVault.isPrivate;
+               await vaultsService.togglePrivate(vaultId)
+            } catch(e){
+               logger.log(e)
+               Pop.error(e)
             }
          },
          async deleteVault(vaultId){
@@ -175,6 +191,28 @@ import { router } from '../router.js';
    </script>
    
    <style scoped lang="scss">
+   .masonry-with-columns {
+   columns: 4 300px;
+   column-gap: 1rem;
+   }
+   @media (max-width: 575.98px) { 
+   .masonry-with-columns {
+   columns: 2 ;
+   column-gap: 1rem;
+   }
+   }
+   .masonry-item {
+   width: 150px;
+   // background: #EC985A;
+   color: white;
+   margin: 0 1rem 1rem 0;
+   display: inline-block;
+   width: 100%;
+   text-align: center;
+   font-family: system-ui;
+   font-weight: 900;
+   font-size: 2rem;
+   } 
    .bottom-shadow{
    background: linear-gradient(0deg, rgba(0,0,0,0.6) 20%, rgba(0, 0, 0, 0)100%);
    }

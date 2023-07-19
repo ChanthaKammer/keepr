@@ -13,6 +13,7 @@ export const AppState = reactive({
   activeVaultKeeps: [],
   activeProfile: {},
   activeProfileKeeps: [],
+  activeVaultKeepId: 0,
   activeProfileVaults: [],
   fakeVaults: ['Sports', 'Food', 'Art', 'Space', 'Gaming', 'Golf', 'Climbing', 'Astronomy', 'Tennis']
 })
