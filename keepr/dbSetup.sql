@@ -60,4 +60,24 @@ SHOW ENGINE INNODB STATUS;
 
 SELECT *
 FROM keeps keep
-WHERE keep.creatorId = '64a76eae48f84949dfd6247a';"
+WHERE keep.creatorId = '64a76eae48f84949dfd6247a';
+
+
+SELECT 
+keep.*,
+COUNT(vk.keepId) AS kept,
+creator.*
+FROM keeps keep
+LEFT JOIN vaultkeeps vk ON vk.KeepId = keep.id
+JOIN accounts creator on keep.creatorId = creator.id
+GROUP BY (keep.Id);
+
+SELECT 
+keep.*,
+COUNT(vk.keepId) AS kept,
+creator.*
+FROM keeps keep
+LEFT JOIN vaultkeeps vk ON vk.KeepId = keep.id
+JOIN accounts creator ON keep.creatorId = creator.Id
+WHERE keep.id = 265
+GROUP BY (keep.Id);
