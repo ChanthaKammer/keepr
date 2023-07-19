@@ -18,12 +18,12 @@
          <div class="col-4">
             <!-- <i class="mdi mdi-trash-can-outline fs-2" v-if="activeVault?.creator?.id == account?.id" @click="deleteVault(activeVault?.id)"></i> -->
             <i class="mdi mdi-dots-horizontal nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          </i>
-          <ul class="dropdown-menu">
+         </i>
+         <ul class="dropdown-menu">
             <li><a class="dropdown-item" @click="deleteVault(activeVault?.id)">Delete Vault</a></li>
             <li><a class="dropdown-item" v-if="activeVault.isPrivate" @click="togglePrivate(activeVault?.id)">Make Public</a></li>
             <li><a class="dropdown-item" v-if="!activeVault.isPrivate" @click="togglePrivate(activeVault?.id)">Make Private</a></li>
-          </ul>
+         </ul>
          </div>
       </div>
    </div>

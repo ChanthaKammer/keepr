@@ -14,21 +14,21 @@
                      <i class="mdi mdi-eye-outline fs-4"> {{ activeKeep?.views }} </i>
                      <i class="mdi mdi-bank fs-4"> {{ activeKeep?.kept }} </i>
                   </div>
-                  <div class="col-12">
-                     <h1 class="text-center f-inter">{{ activeKeep?.name }}</h1>
-                     <h4>{{ activeKeep?.description }}</h4>
+                  <div class="col-12 p-3">
+                     <h1 class="text-center f-inter ps-3">{{ activeKeep?.name }}</h1>
+                     <h4 class="ps-3">{{ activeKeep?.description }}</h4>
                   </div>
-                  <div class="col-12 text-end">
+                  <div class="col-12 text-end p-3">
                      <div class="row">
                         <div class="col-6">
-                              <div class="d-flex mb-3">
+                              <div class="d-flex mb-3 ps-3">
                                  <button data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal">
                                     <i class="mdi mdi-delete" @click="removeVaultKeep(activeKeep.vaultKeepId)">Remove</i>
                                  </button>
                               </div>
                         </div>
                         <div class="col-6 d-flex">
-                           <img class="img-fluid object-fit-cover w-25 rounded-circle" :src="activeKeep?.creator?.picture" alt="">
+                           <img class="img-fluid object-fit-cover w-25 rounded-circle profile-picture-small" :src="activeKeep?.creator?.picture" alt="">
                            <p class="align-self-center">{{ activeKeep?.creator?.name }}</p>
                         </div>
                      </div>
@@ -71,6 +71,9 @@ import { vaultKeepService } from '../services/VaultKeepService.js';
 
 
 <style scoped lang="scss">
+.profile-picture-small{
+   aspect-ratio: 1/1;
+}
    * {
       border: 0px solid green
    }
