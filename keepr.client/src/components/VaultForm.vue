@@ -3,11 +3,11 @@
       <div class="modal-body ">
          <div class="container-fluid">
             <div class="form-floating mb-3">
-               <input type="text" class="form-control" id="vaultName" aria-describedby="vaultName" v-model="editable.name">
-               <label for="vaultName" class="form-label">Add Your Vault</label>
+               <input type="text" class="form-control" id="vaultName" aria-describedby="vaultName" v-model="editable.name" required>
+               <label for="vaultName" class="form-label">Vault Name</label>
             </div>
             <div class="form-floating mb-3">
-               <input type="text" class="form-control" id="keepImg" aria-describedby="keepimg" v-model="editable.img">
+               <input type="text" class="form-control" id="keepImg" aria-describedby="keepimg" v-model="editable.img" required>
                <label for="keepImage" class="form-label">Image Url</label>
             </div>
             <div class="d-flex justify-content-end gap-2">

@@ -3,11 +3,11 @@
       <div class="modal-body ">
          <div class="container-fluid">
             <div class="form-floating mb-3">
-               <input type="text" class="form-control" id="keepName" aria-describedby="keepName" v-model="editable.name">
+               <input type="text" class="form-control" id="keepName" aria-describedby="keepName" v-model="editable.name" required>
                <label for="keepName" class="form-label">Keep Name</label>
             </div>
             <div class="form-floating mb-3">
-               <input type="text" class="form-control" id="keepImg" aria-describedby="keepimg" v-model="editable.img">
+               <input type="text" class="form-control" id="keepImg" aria-describedby="keepimg" v-model="editable.img" required>
                <label for="keepImage" class="form-label">Image Url</label>
             </div>
             <div class="form-floating mb-3">
