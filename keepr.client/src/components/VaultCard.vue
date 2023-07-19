@@ -1,6 +1,6 @@
 <template>
    <div class="p-4">
-      <div class="d-flex flex-column recipe-card justify-content-center position-relative" @click="getKeepById(keep.Id)">
+      <div class="d-flex flex-column recipe-card justify-content-center position-relative">
          <img
          :src="vault?.img" class="img-fluid object-fit-cover elevation-5 rounded-3"/>
          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end">

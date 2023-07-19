@@ -29,8 +29,8 @@
                               </div>
                         </div>
                         <div class="col-6 d-flex">
-                           <img class="img-fluid object-fit-cover w-25 rounded-circle" :src="activeKeep?.creator.picture" alt="">
-                           <p class="align-self-center">{{ activeKeep?.creator.name }}</p>
+                           <img class="img-fluid object-fit-cover w-25 rounded-circle" :src="activeKeep?.creator?.picture" alt="">
+                           <p class="align-self-center">{{ activeKeep?.creator?.name }}</p>
                         </div>
                      </div>
                   </div>
