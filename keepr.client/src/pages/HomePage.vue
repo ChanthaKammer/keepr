@@ -46,9 +46,9 @@ import AccountForm from '../components/AccountForm.vue.js';
       Vault Keep Details
     </button>
   </section> -->
-  <KeepDetailsModal id="vaultKeepDetailsModal">
+  <!-- <KeepDetailsModal id="vaultKeepDetailsModal">
     <VaultKeepModal/>
-  </KeepDetailsModal>
+  </KeepDetailsModal> -->
   <!-- <section class="container-fluid d-flex justify-content-center mt-2">
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#accountModal" aria-controls="accountModal">
       Edit Account

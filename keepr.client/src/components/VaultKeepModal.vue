@@ -1,6 +1,6 @@
 <template>
    <div class="bg-dark">
-      <div class="modal-content rounded-3" >
+      <div class="modal-content" >
       <div class="modal-body container-fluid p-0 bg-dark">
          <section class="row">
             <div class="col-md-6 col-12">
@@ -30,7 +30,7 @@
                         <div class="col-6 d-flex p-3 align-items-end">
                            <h5 class="f-roboto text-white">{{ activeKeep?.creator?.name }}</h5>
                            <RouterLink :to="{ name: 'Profile', params: {id: activeKeep?.creatorId}}">
-                              <img class="img-fluid object-fit-cover rounded-circle profile-picture-small p-2" :src="activeKeep.creator?.picture" alt="" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveProfile(activeKeep.creatorId)">
+                              <img class="img-fluid object-fit-cover rounded-circle profile-picture-small p-2" :src="activeKeep?.creator?.picture" alt="" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveProfile(activeKeep.creatorId)">
                            </RouterLink>
                         </div>
                      </div>
@@ -73,6 +73,10 @@ import { vaultKeepService } from '../services/VaultKeepService.js';
 
 
 <style scoped lang="scss">
+.modal-content{
+   border: 3px;
+   border-radius: 3px;
+}
 .f-flow{
 font-family: 'Flow Circular', cursive;
 }

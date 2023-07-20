@@ -81,3 +81,23 @@ LEFT JOIN vaultkeeps vk ON vk.KeepId = keep.id
 JOIN accounts creator ON keep.creatorId = creator.Id
 WHERE keep.id = 265
 GROUP BY (keep.Id);
+
+
+-- VK GetById
+SELECT vk.*,
+COUNT(vk.keepId) AS kept
+FROM vaultkeeps vk
+LEFT JOIN keeps keep ON keep.Id = vk.KeepId
+WHERE vk.id = 316
+GROUP BY(vk.Id);
+
+SELECT
+vk.*,
+COUNT(vk.keepId) AS kept,
+keep.*,
+acc.*
+FROM keeps keep
+LEFT JOIN vaultkeeps vk ON vk.keepId = keep.Id
+JOIN accounts acc ON keep.creatorId = acc.Id
+WHERE vk.vaultId = 313
+GROUP BY(vk.Id)
