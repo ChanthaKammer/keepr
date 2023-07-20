@@ -79,7 +79,7 @@ public class VaultsRepository{
       FROM keeps keep
       LEFT JOIN vaultkeeps vk ON vk.keepId = keep.Id
       JOIN accounts acc ON keep.creatorId = acc.Id
-      WHERE vk.vaultId = 313
+      WHERE vk.vaultId = @vaultId
       GROUP BY(vk.Id);
       ;";
 

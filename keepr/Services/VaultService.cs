@@ -15,11 +15,10 @@ public class VaultService{
    internal Vault getById(int vaultId, string userId){
       Vault vault = _repo.getById(vaultId);
       if(vault == null) throw new Exception($"No vault found with id: {vaultId}");
-      if(vault.CreatorId != userId && vault.isPrivate || vault.isPrivate && vault.CreatorId != userId){
+      if(vault.isPrivate == true && vault.CreatorId != userId){
          throw new Exception($"You are not allowed to access this vault.");
-      } else {
-         return vault;
       } 
+         return vault;
    }
 
    internal Vault updateVault(Vault vaultData, string userId){
@@ -49,7 +48,7 @@ public class VaultService{
    {
       Vault vault = getById(vaultId, userId);
       if(vault.isPrivate && vault.CreatorId != userId){
-         throw new Exception("You are not allowed to access this vault");
+         throw new Exception("You are not allowed to access these vaultkeeps");
       }
       return _repo.getVaultKeepsByVaultId(vaultId);
    }

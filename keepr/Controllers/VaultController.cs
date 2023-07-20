@@ -25,10 +25,10 @@ public class VaultsController : ControllerBase
    }
 
    [HttpGet("{vaultId}/keeps")]
-   public async Task<ActionResult<List<KeepInVault>>> getVaultKeepsByVaultId(int vaultId, string userId){
+   public async Task<ActionResult<List<KeepInVault>>> getVaultKeepsByVaultId(int vaultId){
       try{
          Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
-         List<KeepInVault> vaultKeeps = _vaultService.getVaultKeepsByVaultId(vaultId, userId);
+         List<KeepInVault> vaultKeeps = _vaultService.getVaultKeepsByVaultId(vaultId, userInfo.Id);
          return Ok(vaultKeeps);
       } catch(Exception e){
          return BadRequest(e.Message);
