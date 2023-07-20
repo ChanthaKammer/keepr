@@ -123,7 +123,7 @@ export default {
       async function getAccountKeeps(){
           try{
             await profileService.getProfileKeeps(account.value.id)
-            logger.log("account id",account.value.id);
+            logger.log("account id", AppState.account.id);
           } catch (e) {
             logger.log(e)
           }

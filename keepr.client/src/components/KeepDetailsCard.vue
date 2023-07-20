@@ -17,13 +17,13 @@
                   </div>
                   <div class="col-12">
                      <h1 class="text-center f-roboto">{{ activeKeep?.name }}</h1>
-                     <p class="f-inter pe-3">{{ activeKeep?.description }}</p>
+                     <p class="f-inter px-3">{{ activeKeep?.description }}</p>
                      <!-- <p>{{ activeKeep.creator }}</p> -->
                   </div>
                   <div class="col-12">
                      <div class="row">
                         <div class="d-flex col-6 align-items-end">
-                              <div class="d-flex mb-3">
+                              <div class="d-flex mb-3 ps-4">
                                  <select class="form-select" aria-label="Type Selection" placeholder="" v-model="selectedVault.vaultId">
                                           <option selected>Select Vault</option>
                                           <option v-for="v in myVaults" :key="v.id" :value="v.id">{{ v.name }}</option>

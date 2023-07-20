@@ -162,8 +162,8 @@ import { router } from '../router.js';
          },
          async togglePrivate(vaultId){
             try {
-               AppState.activeVault.isPrivate = !AppState.activeVault.isPrivate;
                await vaultsService.togglePrivate(vaultId)
+               AppState.activeVault.isPrivate = !AppState.activeVault.isPrivate;
             } catch(e){
                logger.log(e)
                Pop.error(e)
@@ -174,7 +174,6 @@ import { router } from '../router.js';
                const yes = await Pop.confirm('Delete Vault ?')
                   if (!yes){ 
                   return }
-               // logger.log("Deleting vault", vaultId);
                await vaultsService.deleteVault(vaultId);
                router.push({path: '/#/Home'})
             } catch (e){
