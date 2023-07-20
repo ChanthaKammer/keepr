@@ -30,7 +30,7 @@
                         <div class="col-6 d-flex p-3 align-items-end">
                            <h5 class="f-roboto text-white">{{ activeKeep?.creator?.name }}</h5>
                            <RouterLink :to="{ name: 'Profile', params: {id: activeKeep?.creatorId}}">
-                              <img class="img-fluid object-fit-cover rounded-circle profile-picture-small p-2" :src="activeKeep?.creator?.picture" alt="" data-bs-toggle="modal" data-bs-target="#keepDetailsModal" @click="setActiveProfile(activeKeep.creatorId)">
+                              <img class="img-fluid object-fit-cover rounded-circle profile-picture-small p-2" :src="activeKeep?.creator?.picture" alt="" data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal" @click="setActiveProfile(activeKeep.creatorId)">
                            </RouterLink>
                         </div>
                      </div>
@@ -49,6 +49,7 @@ import { AppState } from '../AppState.js';
 import { logger } from '../utils/Logger.js';
 import { computed } from 'vue';
 import { vaultKeepService } from '../services/VaultKeepService.js';
+import { profileService } from '../services/ProfileService.js';
    export default {
       setup(){
          return {
@@ -58,6 +59,14 @@ import { vaultKeepService } from '../services/VaultKeepService.js';
                   if (!yes){ 
                   return }
                   await vaultKeepService.deleteVaultKeep(id);
+               } catch (e){
+                  logger.log(e)
+                  Pop.error(e)
+               }
+            },
+            async setActiveProfile(profileId){
+               try{
+                  await profileService.getProfileById(profileId);
                } catch (e){
                   logger.log(e)
                   Pop.error(e)
