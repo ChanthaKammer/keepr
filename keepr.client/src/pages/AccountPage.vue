@@ -19,8 +19,8 @@ import AccountForm from '../components/AccountForm.vue.js';
       <!-- <div class="text-center">
       </div> -->
     </div>
-    <div class="row text-center">
-      <h1>{{ account.name }}</h1>
+    <div class="row text-center text-white">
+      <h1 class="f-roboto">{{ account.name }}</h1>
       <h2>{{myVaults.length}} Vaults | {{ accountKeeps.length }} Keeps</h2>
     </div>
 </section>
@@ -70,9 +70,9 @@ import AccountForm from '../components/AccountForm.vue.js';
     <!-- <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal" aria-controls="vaultKeepDetailsModal">
       Vault Keep Details
     </button> -->
-    <KeepDetailsModal id="vaultKeepDetailsModal">
+    <!-- <KeepDetailsModal id="vaultKeepDetailsModal">
       <VaultKeepModal/>
-    </KeepDetailsModal>
+    </KeepDetailsModal> -->
 </section>
 <!-- <section class="container-fluid d-flex justify-content-center mt-2">
     <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#accountModal" aria-controls="accountModal">

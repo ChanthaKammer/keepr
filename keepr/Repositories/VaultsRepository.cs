@@ -74,11 +74,13 @@ public class VaultsRepository{
       SELECT
       vk.*,
       keep.*,
+      COUNT(vk.keepId) AS kept,
       acc.*
       FROM keeps keep
-      JOIN vaultkeeps vk ON vk.keepId = keep.Id
+      LEFT JOIN vaultkeeps vk ON vk.keepId = keep.Id
       JOIN accounts acc ON keep.creatorId = acc.Id
-      WHERE vk.vaultId = @vaultId
+      WHERE vk.vaultId = 313
+      GROUP BY(vk.Id);
       ;";
 
       List<KeepInVault> vaultKeeps = _db.Query<VaultKeep, KeepInVault, Account, KeepInVault>(sql,(vaultKeep, keep, acc) =>

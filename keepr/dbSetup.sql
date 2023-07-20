@@ -93,11 +93,20 @@ GROUP BY(vk.Id);
 
 SELECT
 vk.*,
-COUNT(vk.keepId) AS kept,
 keep.*,
+COUNT(vk.keepId) AS kept,
 acc.*
 FROM keeps keep
 LEFT JOIN vaultkeeps vk ON vk.keepId = keep.Id
 JOIN accounts acc ON keep.creatorId = acc.Id
 WHERE vk.vaultId = 313
-GROUP BY(vk.Id)
+GROUP BY(vk.Id);
+SELECT
+vk.*,
+keep.*,
+acc.*
+FROM keeps keep
+JOIN vaultkeeps vk ON vk.keepId = keep.Id
+JOIN accounts acc ON keep.creatorId = acc.Id
+WHERE vk.vaultId = 313
+
