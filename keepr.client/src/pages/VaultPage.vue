@@ -79,8 +79,8 @@
       <!-- <button type="button" class="btn btn-primary elevation-5" data-bs-toggle="modal" data-bs-target="#vaultKeepDetailsModal" aria-controls="vaultKeepDetailsModal">
          Vault Keep Details
       </button> -->
-      <KeepDetailsModal id="vaultKeepDetailsModal">
-         <VaultKeepModal/>
+      <KeepDetailsModal id="vaultKeepDetailsModal" class="">
+         <VaultKeepModal class=""/>
       </KeepDetailsModal>
    </section>
    <section class="container-fluid d-flex justify-content-center mt-2">

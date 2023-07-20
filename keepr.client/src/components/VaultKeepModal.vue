@@ -16,7 +16,7 @@
                   </div>
                   <div class="col-12">
                      <h1 class="text-center f-roboto">{{ activeKeep?.name }}</h1>
-                     <p class="f-inter text-white ps-2">{{ activeKeep?.description }}</p>
+                     <p class="f-inter text-white px-2">{{ activeKeep?.description }}</p>
                   </div>
                   <div class="col-12">
                      <div class="row">

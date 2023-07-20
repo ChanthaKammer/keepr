@@ -1,7 +1,7 @@
 <template>
-   <div class="bg-dark">
+   <div class="bg-dark rounded-3">
       <div class="modal-content bg-dark" >
-      <div class="modal-body p-0">
+      <div class="modal-body p-0 rounded-3">
          <section class="row">
             <div class="col-md-6 col-12">
                <img class="img-fluid object-fit-cover h-100 w-100 rounded-start"
